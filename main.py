@@ -20,6 +20,15 @@ letters_to_numbers = {
   'E': 4,
 }
 
+for n in range(5):
+  print("Where you want ship ", n + 1, "?")
+  column = input("column (A to E):")
+  row = input("row (1 to 5):")
+  column_number = letters_to_numbers[column]
+  row_number = int(row) - 1
+  
+  board[row_number][column_number] = 'X'
+
 for row in board:
   print(row)
 
