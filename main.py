@@ -4,7 +4,7 @@ from random import randint
 
 print("Let's play fucking Battleship!")
 
-board = [
+battleship_board = [
     [' ',' ',' ',' ',' '],
     [' ',' ',' ',' ',' '],
     [' ',' ',' ',' ',' '],
@@ -27,13 +27,13 @@ for n in range(5):
   column_number = letters_to_numbers[column]
   row_number = int(row) - 1
   
-if board[row_number][column_number] == 'X':
+if battleship_board[row_number][column_number] == 'X':
  print('spot is already in used') # if there is a repeat
-if column not in ABCDE:
+if column not in "ABCDE":
  print('column is wrong, please use ABCDE only')
 if row not in "12345":
  print('row is wrong, please use 12345 only')
   
-for row in board:
+for row in battleship_board:
   print(row)
 
