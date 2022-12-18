@@ -29,15 +29,6 @@ for n in range(5):
 
 board[row_number][column_number] = 'X'
 
-"""
-if board[row_number][column_number] == 'X':
- print('spot is already in used') # if there is a repeat
-if column not in "ABCDE":
- print('column is wrong, please use ABCDE only')
-if row not in "12345":
- print('row is wrong, please use 12345 only')
-"""  
-
 for row in board:
   print(row)
 
