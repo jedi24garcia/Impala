@@ -17,10 +17,10 @@ board = [
 ]
 """
 
-let_to_num = {'A':0,'B':1, 'C':2,'D':3,'E':4,'F':5}
+let_to_num = {'a':0,'b':1,'c':2,'d':3,'e':4,'f':5}
 
 def print_board(board):
-  print('A B C D E F')
+  print('a b c d e f')
   print('*****')
   row_num = 1
   for row in board:
@@ -28,8 +28,8 @@ def print_board(board):
     row_num +=1
 
 for n in range(6):
-  print("Where you want ship ", n + 1, "?")
-  column = input("column (A to F):")
+  print("Where do you want the ship ", n + 1, "?")
+  column = input("column (a to f):")
   row = input("row (1 to 6):")
   column_number = let_to_num[column]
   row_number = int(row) - 1
