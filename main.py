@@ -34,7 +34,7 @@ def print_board(board):
     row_num +=1
 
 for n in range(6):
-  print("Where do you want the ship ", n + 1, "?")
+  print("Where do you want the ship bro ", n + 1, "?")
   column = input("column (a to f):")
   row = input("row (1 to 6):")
   column_number = let_to_num[column]
