@@ -17,6 +17,12 @@ board = [
 ]
 """
 
+class ship
+
+class Ocean
+
+
+
 let_to_num = {'a':0,'b':1,'c':2,'d':3,'e':4,'f':5}
 
 def print_board(board):
