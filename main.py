@@ -3,5 +3,6 @@
 import numpy as np
 import sys 
 
-for i in range(10):
+for i in range(100):
   print(i)
+
