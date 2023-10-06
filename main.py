@@ -9,21 +9,25 @@ def getVoice():
   voicenames = []
  
   for voice in voices:
-    voiceattr = NSSpeechSynthesizer.attributesForVoice_(voice)
-    voicename = voiceattr['VoiceName']
-    if voicename not in voicenames:
-      voicenames.append(voicename)
+    try:
+      voiceattr = NSSpeechSynthesizer.attributesForVoice_(voice)
+      voicename = voiceattr['VoiceName']
+      if voicename not in voicenames:
+        voicenames.append(voicename)
+    except Exception as e:
+            print(f"Error getting voice attributes: {e}")
+
   return voicenames
 
 def speak(text, voicename):
   synthesizer = NSSpeechSynthesizer.alloc().initWithVoice_(voicename)
-  if synthesizer:
-    synthesizer.startSpeakingString_(text)
-  else:
-    print(f"Voice '{voicename}' is not available.")
-
-#def Lesya():
-  
+  try:
+    if synthesizer:
+      synthesizer.startSpeakingString_(text)
+    else:
+      print(f"Voice '{voicename}' is not available.")
+  except Exception as e:
+    print(f"Error speaking: {e}")  
 
 if __name__ == '__main__':
   voicenames = getVoice()
@@ -33,11 +37,12 @@ if __name__ == '__main__':
     for voicename in voicenames:
       print(voicename) 
 
-     #selected_persona = voicenames[0]
-     # selected_persona = "Lesya"
+      selected_persona = voicenames[0]
+      #selected_persona = "Albert"
       text_to_speak = "Hello"
       
-      for voicename in voicenames:
-        speak(text_to_speak, voicename)
+      #for voicename in voicenames:
+        #speak(text_to_speak, voicename)
 
+speak(text_to_speak, selected_persona)
 #speak(selected_persona, text_to_speak)
