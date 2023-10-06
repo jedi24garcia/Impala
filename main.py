@@ -22,6 +22,9 @@ def speak(text, voicename):
   else:
     print(f"Voice '{voicename}' is not available.")
 
+#def Lesya():
+  
+
 if __name__ == '__main__':
   voicenames = getVoice()
   if not voicenames:
@@ -30,7 +33,11 @@ if __name__ == '__main__':
     for voicename in voicenames:
       print(voicename) 
 
-      selected_persona = voicenames[0]
+     #selected_persona = voicenames[0]
+     # selected_persona = "Lesya"
       text_to_speak = "Hello"
+      
+      for voicename in voicenames:
+        speak(text_to_speak, voicename)
 
-      speak(text_to_speak, selected_persona)
+#speak(selected_persona, text_to_speak)
