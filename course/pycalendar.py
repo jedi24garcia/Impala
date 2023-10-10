@@ -2,7 +2,8 @@
 
 import calendar
 
-x = int(input("Type month: "))
-y = int(input("Type year: "))
+x = calendar.month
+y = int(input("Type month: "))
+z = int(input("Type year: "))
 
-print(calendar.month(y, x))
+print(x(z, y))
