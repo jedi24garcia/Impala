@@ -2,9 +2,19 @@
 
 import os
 
-print("Welcome to the expression validating program")
+print("Welcome to the expression validating program.")
 
-user = input("Enter your expression: ")
+expression = "abc"
+x = "Y"
+y = "N"
+
+while True:
+  user = input("Enter your expression: ")
+  if user == expression:
+    break
+  else:
+    if user is not expression:
+      print("try again")
 
 def ExpValidator():
   print("hello")
