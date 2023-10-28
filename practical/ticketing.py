@@ -5,10 +5,10 @@ import threading
 #from threading import Time
 #from collections import deque
 
-
 class TicketStructure:
   def __init__(self):
     self.customer_queue = []
+    print("Welcome to my SHOP")
   
   def NewCustomers(self):
     customer_number = 1
