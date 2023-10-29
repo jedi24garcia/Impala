@@ -2,9 +2,9 @@
 
 class UserValidator:
   def __init__(self, opening_bracket, closing_bracket):
+    self.stack = []
     self.opening_bracket = opening_bracket
     self.closing_bracket = closing_bracket
-    self.stack = []
 
   def valid_expression(self, UserExpression):
     stack = [] # creating the stack      
