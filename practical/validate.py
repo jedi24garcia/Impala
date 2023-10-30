@@ -7,7 +7,7 @@ class UserValidator:
     self.closing_bracket = closing_bracket
 
   def valid_expression(self, UserExpression):
-    stack = [] # creating the stack      
+    self.stack = [] # creating the stack      
     for char in UserExpression:
       if char == self.opening_bracket:
         self.stack.append(char)
