@@ -12,7 +12,6 @@ class UserValidator:
     for char in self.UserExpression:
       if char == self.opening_bracket:
         self.stack.append(char)
-        #count += 1
       elif char == self.closing_bracket:
         if not self.stack:
           return False
