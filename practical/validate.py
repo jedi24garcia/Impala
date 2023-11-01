@@ -7,8 +7,9 @@ class UserValidator:
     self.closing_bracket = closing_bracket
 
   def valid_expression(self, UserExpression):
-    self.stack = [] # creating the stack      
-    for char in UserExpression:
+    self.stack = [] # creating the stack
+    self.UserExpression = UserExpression      
+    for char in self.UserExpression:
       if char == self.opening_bracket:
         self.stack.append(char)
         #count += 1
@@ -26,9 +27,12 @@ def main():
   print("Welcome to the expression validating program.")
   
   while True:
+    try:  
     # expression from the user
-    UserExpression = input(f"Enter your expression: ")
+      UserExpression = input(f"Enter your expression: ")
     # open and close brackets
+    except (NameError, KeyboardInterrupt):
+      raise SystemExit 
     opening_bracket = input(f"Enter the opening brackets: ")
     closing_bracket = input(f"Enter the closing brackets: ")
 
