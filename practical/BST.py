@@ -19,50 +19,55 @@ class BinarySearchTree:
     def _insert_recursive(self, root, key):
         if root is None:
             return TreeNode(key)
-        if key < root.key: # if key is less than root.key, it simply means the new node must be placed in the left subtree.
+        if key < root.key: # if key is less than root.key, it simply means the new node must be placed in the left subtree
             root.r = self._insert_recursive(root.r, key)
-        elif key > root.key: # if key is greater than root.key, it simply means the new node must be placed in the right subtree.
+        elif key > root.key: # if key is greater than root.key, it simply means the new node must be placed in the right subtree
             root.l = self._insert_recursive(root.l, key)
         return root # returns the current 'root' code
 
 def preorder_traversal(root):
-    stack = [root]
-    while stack:
-        node = stack.pop()
+    stack = [root] # initializes stack with the root to commence pre-order traversal
+    while stack: # loops
+        node = stack.pop() # represents the node to be processed for pre-order traversal
         if node:
-            print(node.key, end=" ")
-            stack.append(node.r)
-            stack.append(node.l)
+            print(node.key, end=" ") # this prints the key of the current node for the pre-order part, where the root is visited first
+            stack.append(node.r) # pushes right child of the node onto the stack and ensures right subtree will be visited after left subtree
+            stack.append(node.l) # vice-versa to stack.append(node.r) for pre-order traversal
 
 def postorder_traversal(root):
-    stack = [root]
-    outcome = []
-    while stack:
-        node = stack.pop()
+    stack = [root] # initializes stack with the root to commence post-order traversal
+    outcome = [] # this creates an empty list 'outcomes' to help store the keys in correct order 
+    while stack: # loops
+        node = stack.pop() # represents the node to be processed for post-order traversal
         if node:
-            outcome.append(node.key)
-            stack.append(node.l)
-            stack.append(node.r)
+            outcome.append(node.key) # this appends the key of the current node to the empty list 'outcome'.
+            stack.append(node.l) # pushes right child of the node onto the stack and ensures right subtree will be visited after left subtree
+            stack.append(node.r) # vice-versa to stack.append(node.r) for post-order traversal
     while outcome:
-        print(outcome.pop(), end=" ")
+        print(outcome.pop(), end=" ") # when all nodes are processed completely, the keys stored
+        # in the outcome list are printed in a reversal order to accomplish post-order traversal
 
+# The whole function below is responsible for the running the whole program as this takes
+# the users input to create a BST and carry out pre-order and post traversals as defined.
 def main():
     print("Welcome to the Binary Search Tree.")
     
-    data = list(map(int, input("Enter data to construct a BST: ").split()))
-    tree = BinarySearchTree()
+    # prompts users to enter a list. This also splits the into list of integers using split()
+    datas = [int(item) for item in input("Enter data to construct a BST: ").split()]
+    BSTtree = BinarySearchTree()
 
-    for item in data:
-        tree.insert(item)
+    # loops
+    for item in datas:
+        BSTtree.insert(item)
 
     print("Pre-Order traversal of binary tree is:", end=" ")
-    preorder_traversal(tree.root)
-    print()
+    preorder_traversal(BSTtree.root)
 
-    print("Post-Order traversal of binary tree is:", end=" ")
-    postorder_traversal(tree.root)
+    print("\nPost-Order traversal of binary tree is:", end=" ")
+    postorder_traversal(BSTtree.root)
     print()
-
+    
+    # If the users want to try to run the program again, this component calls itself recursively.
     UserOption = input("Do you want to try again? (Y/N): ").strip().lower()
     if UserOption != "n":
         main()
@@ -71,3 +76,18 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# ANALYSIS
+# 1. Why did you select that specific data structure? 
+# This data structure allows me or the users to enter data to construct a BST in which it traverse
+# the tree in pre-order and post-order, respectively. I have documented each line for a better understanding.
+# 2. How was that data structure suited to the task?
+# The data structure suited the task as running the program performs as its intructed. It shows
+# no error or bug and runs similar to the output of the task.
+# 3. Could another data structure be used to complete the same task? If so, how would your solution differ?
+# Yes, absolutely. There are other ways of data structure that can done to complete this task.
+# For example, you can define a delete operation if you are looking for a more complex solutions and also, 
+# a recursive function that allows you to return the new state of the given node after carrying out
+# the delete operation. Another method would be to create an exists function. This is another
+# recursive function that would return 'True' or 'False' depending on wether a specified value
+# that exists already in the tree.
