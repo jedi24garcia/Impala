@@ -29,9 +29,9 @@ def main():
     try:  
     # expression from the user
       UserExpression = input(f"Enter your expression: ")
-    # open and close brackets
     except (NameError, KeyboardInterrupt):
       raise SystemExit 
+    # open and close brackets
     opening_bracket = input(f"Enter the opening brackets: ")
     closing_bracket = input(f"Enter the closing brackets: ")
 
@@ -49,3 +49,9 @@ def main():
 
 if __name__ == "__main__":
   main()
+
+# 1. Why did you select that specific data structure?
+# This data structure allows users to enter an expression and would validate that expression if its valid or not.
+# 2. How was that data structure suited to the task?
+# The data structure suited the task as  
+# 3. Could another data structure be used to complete the same task? If so, how would your solution differ?
