@@ -2,37 +2,64 @@
 
 import time
 import threading
-#from threading import Time
-#from collections import deque
 
 class TicketStructure:
   def __init__(self): # initializing the queue
     self.customer_queue = [] # create an empty list to store the queue
-    print("Welcome to my SHOP")
-  
-  def NewCustomers(self):
-    customer_number = 1
-    while True:
-      print(f"Customer with ticket {customer_number} is added to the queue.")
-      self.customer_queue.append(customer_number)
-      customer_number += 1
-      time.sleep(3)
+    self.running = True
+    self.lock = threading.Lock()
+    self.customer_counter = 0
 
-  def SeeCustomers(self):
-    while True:
+  def add_customer(self):
+    with self.lock:
+      self.customer_counter += 1
+      self.customer_queue.append(self.customer_counter)
+      print(f"Customer with ticket {self.customer_counter} is added to the queue.")
+
+  def see_customer(self):
+    with self.lock:
       if self.customer_queue:
         customer_number = self.customer_queue.pop(0)
         print(f"Sales Assistant is ready to see the next customer.")
         print(f"The customer with ticket number {customer_number} will be seen now.")
-        print(f"The customers with the following tickets are in the queue: {self.customer_queue}")
       else:
         print("No customers in the queue.")
-        time.sleep(5)
 
-ticket_structure = TicketStructure()
+  def queue_display(self):
+    with self.lock:
+      print(f"The customers with the following tickets are in the queue: {self.customer_queue}")
 
-NewCustomers_thread = threading.Thread(target=ticket_structure.NewCustomers)
-SeeCustomers_thread = threading.Thread(target=ticket_structure.SeeCustomers)
+  def stop(self):
+    self.running = False
 
-NewCustomers_thread.start()
-SeeCustomers_thread.start()
+def NewCustomers(store):
+  while store.running:
+    store.add_customer()
+    store.queue_display()
+    time.sleep(3)
+
+def SeeCustomers(store):
+  while store.running:
+    store.see_customer()
+    store.queue_display()
+    time.sleep(5)
+
+def main():
+  print("Welcome to my SHOP.")
+
+  ticket_structure = TicketStructure()
+
+  add_customer_thread = threading.Thread(target=NewCustomers, args=(ticket_structure,))
+  see_customer_thread = threading.Thread(target=SeeCustomers, args=(ticket_structure,))
+
+  add_customer_thread.start()
+  see_customer_thread.start()
+
+  input("Press Enter to quit the program")
+  ticket_structure.stop()  # Stop the threads
+
+  add_customer_thread.join()
+  see_customer_thread.join()
+
+if __name__ == "__main__":
+  main()
