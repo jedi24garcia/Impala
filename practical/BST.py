@@ -8,43 +8,56 @@ class TreeNode:
         self.l = None
         self.r = None
 
-def insert(root, key):
-    if root is None:
-        return TreeNode(key)
-    else:
-        if root.key < key:
-            root.r = insert(root.r, key)
+class BinarySearchTree:
+    def __init__(self):
+        self.root = None
+    
+    def insert(self, root, key):
+        if root is None:
+            root = TreeNode(key)
         else:
-            root.l = insert(root.l, key)
-    return root
+            if root.key < key:
+                root.r = self.insert(root.r, key)
+            else:
+                root.l = self.insert(root.l, key)
+        return root
 
 def preorder_traversal(root):
-    if root:
-        print(root.key, end=" ")
-        preorder_traversal(root.l)
-        preorder_traversal(root.r)
+    stack = [root]
+    while stack:
+        node = stack.pop()
+        if node:
+            print(node.key, end=" ")
+            stack.append(node.r)
+            stack.append(node.l)
 
 def postorder_traversal(root):
-    if root:
-        postorder_traversal(root.l)
-        postorder_traversal(root.r)
-        print(root.key, end=" ")
+    stack = [root]
+    outcome = []
+    while stack:
+        node = stack.pop()
+        if node:
+            outcome.append(node.key)
+            stack.append(node.l)
+            stack.append(node.r)
+    while outcome:
+        print(outcome.pop(), end=" ")
 
 def main():
     print("Welcome to the Binary Search Tree.")
     
     data = list(map(int, input("Enter data to construct a BST: ").split()))
-    root = None
-    
+    tree = BinarySearchTree()
+
     for item in data:
-        root = insert(root, item)
+        tree.root = tree.insert(tree.root, item)
 
     print("Pre-Order traversal of binary tree is:", end=" ")
-    preorder_traversal(root)
+    preorder_traversal(tree.root)
     print()
 
     print("Post-Order traversal of binary tree is:", end=" ")
-    postorder_traversal(root)
+    postorder_traversal(tree.root)
     print()
 
     choice = input("Do you want to try again? (Y/N): ").strip().lower()
