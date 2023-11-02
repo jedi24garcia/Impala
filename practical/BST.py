@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 
-#class that will be used to create node of the tree
+#creating a constructor
 class TreeNode:
-    #this is the constructor to create a new node
-    def __init__(self, key):
+    def __init__(self, key=None):
         self.key = key
         self.l = None
         self.r = None
