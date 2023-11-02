@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # Creating a constructor. The class TreeNode represents a node in the Binary Search Tree
-class TreeNode:
+class Node:
     # constructor method for class TreeNode. The key parameter initializes a new node whereas left (l) and right (r) are set to default which is 'None'.
     def __init__(self, key=None):
         self.key = key
@@ -18,7 +18,7 @@ class BinarySearchTree:
     
     def _insert_recursive(self, root, key):
         if root is None:
-            return TreeNode(key)
+            return Node(key)
         if key < root.key: # if key is less than root.key, it simply means the new node must be placed in the left subtree
             root.r = self._insert_recursive(root.r, key)
         elif key > root.key: # if key is greater than root.key, it simply means the new node must be placed in the right subtree
@@ -79,11 +79,14 @@ if __name__ == "__main__":
 
 # ANALYSIS
 # 1. Why did you select that specific data structure? 
-# This data structure allows me or the users to enter data to construct a BST in which it traverse
-# the tree in pre-order and post-order, respectively. I have documented each line for a better understanding.
+# This structure allows me or the users to enter data to construct a BST in which it traverse
+# the tree in pre-order and post-order, respectively. I have chosen NODE data structure to
+# implement BST as it is a natural pick for representing a BST. I have documented each line for a better understanding.
 # 2. How was that data structure suited to the task?
 # The data structure suited the task as running the program performs as its intructed. It shows
-# no error or bug and runs similar to the output of the task.
+# no error or bug and runs similar to the output of the task. The Node data structure
+# is a natural fit for executing BST because of its alignment with higher structure as well as
+# its effieciency in carrying out BST operations.
 # 3. Could another data structure be used to complete the same task? If so, how would your solution differ?
 # Yes, absolutely. There are other ways of data structure that can done to complete this task.
 # For example, you can define a delete operation if you are looking for a more complex solutions and also, 
