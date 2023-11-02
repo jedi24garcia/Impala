@@ -60,8 +60,8 @@ def main():
     postorder_traversal(tree.root)
     print()
 
-    choice = input("Do you want to try again? (Y/N): ").strip().lower()
-    if choice != "n":
+    UserOption = input("Do you want to try again? (Y/N): ").strip().lower()
+    if UserOption != "n":
         main()
     else:
         print("Bye Bye!!")
