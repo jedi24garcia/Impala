@@ -6,8 +6,8 @@ import threading
 #from collections import deque
 
 class TicketStructure:
-  def __init__(self):
-    self.customer_queue = []
+  def __init__(self): # initializing the queue
+    self.customer_queue = [] # create an empty list to store the queue
     print("Welcome to my SHOP")
   
   def NewCustomers(self):
