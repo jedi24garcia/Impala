@@ -55,6 +55,7 @@ def main(): # entry point
 if __name__ == "__main__":
   main()
 
+# ANALYSIS
 # 1. Why did you select that specific data structure?
 # This structure allows users to enter an expression and would validate that expression if its valid or not. 
 # A stack is the data structure used in this program. I chose this structure as it allows for an
