@@ -1,65 +1,84 @@
 #!/usr/bin/env python3
 
+import sys
 import time
 import threading
+from threading import Timer
 
-class TicketStructure:
+class TicketStructure: # structure
   def __init__(self): # initializing the queue
     self.customer_queue = [] # create an empty list to store the queue
-    self.running = True
+    self.running = True # 
     self.lock = threading.Lock()
     self.customer_counter = 0
 
-  def add_customer(self):
+  def addOn_customer(self):
     with self.lock:
       self.customer_counter += 1
-      self.customer_queue.append(self.customer_counter)
+      self.customer_queue.append(self.customer_counter) # adds new customer
       print(f"Customer with ticket {self.customer_counter} is added to the queue.")
 
-  def see_customer(self):
+  def seeOn_customer(self):
     with self.lock:
       if self.customer_queue:
-        customer_number = self.customer_queue.pop(0)
-        print(f"Sales Assistant is ready to see the next customer.")
+        customer_number = self.customer_queue.pop(0) # removes and gets first customer from the queue
+        print("Sales Assistant is ready to see the next customer.")
         print(f"The customer with ticket number {customer_number} will be seen now.")
       else:
         print("No customers in the queue.")
-
+  
+  # displays current state of the queue
   def queue_display(self):
     with self.lock:
       print(f"The customers with the following tickets are in the queue: {self.customer_queue}")
 
-  def stop(self):
+  # indicates the program should stop as self.running is set to False
+  def exit(self):
     self.running = False
 
 def NewCustomers(store):
   while store.running:
-    store.add_customer()
-    store.queue_display()
-    time.sleep(3)
+    store.addOn_customer() # way to add new customer
+    store.queue_display() # way to display the queue
+    time.sleep(3) # adds new customers to data structure for every 3 seconds
 
 def SeeCustomers(store):
   while store.running:
-    store.see_customer()
-    store.queue_display()
-    time.sleep(5)
+    store.seeOn_customer() # way to see next customer 
+    store.queue_display() # way to display the queue
+    time.sleep(5) # sees new customers to data structure for every 5 seconds
 
 def main():
   print("Welcome to my SHOP.")
+  print("Press any key to quit the program")
 
   ticket_structure = TicketStructure()
 
-  add_customer_thread = threading.Thread(target=NewCustomers, args=(ticket_structure,))
-  see_customer_thread = threading.Thread(target=SeeCustomers, args=(ticket_structure,))
+  AddCustomer_thread = threading.Thread(target=NewCustomers, args=(ticket_structure,))
+  SeeCustomer_thread = threading.Thread(target=SeeCustomers, args=(ticket_structure,))
 
-  add_customer_thread.start()
-  see_customer_thread.start()
+  AddCustomer_thread.start() # starts thread new customers
+  SeeCustomer_thread.start() # starts thread sales 
 
-  input("Press Enter to quit the program")
-  ticket_structure.stop()  # Stop the threads
+  sys.stdin.read(1) # pressing any keys will quit the program
+  ticket_structure.exit()  # Stop the threads
 
-  add_customer_thread.join()
-  see_customer_thread.join()
+  AddCustomer_thread.join() # waits for new customers to finish thread
+  SeeCustomer_thread.join() # waits for sales to finish thread
 
 if __name__ == "__main__":
   main()
+
+# ANALYSIS
+# Why did you select that specific data structure?
+# This is because a list is a practical choice for representing in this scenario. It is
+# effective due to a supported ordered data, access control and its simplicity.
+# How was that data structure suited to the task?
+# The list data structure is an applicable and fitting choice of simulating queueing the shop
+# because it provides the functional necessities to handle the order of arrival, add, remove
+# customers, and to show the state of the queue.
+# Could another data structure be used to complete the same task? If so, how would your solution differ?
+# Yes, you can use deque from the collections module in Python 3. If said data structure is
+# is implemented instead of a list, the solution would be of similar functionality but 
+# potentially or significantly improved performance as the deque provides a more 
+# efficient append. This would allow adding the customers by the end of the queue.
