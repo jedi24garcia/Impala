@@ -12,12 +12,14 @@ class TicketStructure: # structure
     self.lock = threading.Lock()
     self.customer_counter = 0
 
+# function to add customers in the ticketing system
   def addOn_customer(self):
     with self.lock:
       self.customer_counter += 1
       self.customer_queue.append(self.customer_counter) # adds new customer
       print(f"Customer with ticket {self.customer_counter} is added to the queue.")
 
+# function to see customers in the ticketing system
   def seeOn_customer(self):
     with self.lock:
       if self.customer_queue:
@@ -36,23 +38,25 @@ class TicketStructure: # structure
   def exit(self):
     self.running = False
 
+ticket_structure = TicketStructure() # create an instance of the ticketStructure class
+
 def NewCustomers(store):
+  global ticket_structure # global variable for ticket_structure
   while store.running:
+    time.sleep(3) # adds new customers to data structure for every 3 seconds
     store.addOn_customer() # way to add new customer
     store.queue_display() # way to display the queue
-    time.sleep(3) # adds new customers to data structure for every 3 seconds
 
 def SeeCustomers(store):
+  global ticket_structure # global variable for ticket_structure
   while store.running:
+    time.sleep(5) # sees new customers to data structure for every 5 seconds
     store.seeOn_customer() # way to see next customer 
     store.queue_display() # way to display the queue
-    time.sleep(5) # sees new customers to data structure for every 5 seconds
 
 def main():
   print("Welcome to my SHOP.")
   print("Press any key to quit the program")
-
-  ticket_structure = TicketStructure()
 
   AddCustomer_thread = threading.Thread(target=NewCustomers, args=(ticket_structure,))
   SeeCustomer_thread = threading.Thread(target=SeeCustomers, args=(ticket_structure,))
