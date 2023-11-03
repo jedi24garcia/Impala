@@ -82,7 +82,7 @@ if __name__ == "__main__":
 # because it provides the functional necessities to handle the order of arrival, add, remove
 # customers, and to show the state of the queue.
 # Could another data structure be used to complete the same task? If so, how would your solution differ?
-# Yes, you can use deque from the collections module in Python 3. If said data structure is
+# Yes, you can use deque from the collections module in Python 3. If said data structure
 # is implemented instead of a list, the solution would be of similar functionality but 
-# potentially or significantly improved performance as the deque provides a more 
+# potentially or significantly an improved performance as the deque provides a more 
 # efficient append. This would allow adding the customers by the end of the queue.
