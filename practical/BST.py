@@ -26,23 +26,23 @@ class BinarySearchTree:
         return root # returns the current 'root' code
 
 def preorder_traversal(root):
-    stack = [root] # initializes stack with the root to commence pre-order traversal
-    while stack: # loops
-        node = stack.pop() # represents the node to be processed for pre-order traversal
+    pre_stack = [root] # initializes stack with the root to commence pre-order traversal
+    while pre_stack: # loops
+        node = pre_stack.pop() # represents the node to be processed for pre-order traversal
         if node:
             print(node.key, end=" ") # this prints the key of the current node for the pre-order part, where the root is visited first
-            stack.append(node.r) # pushes right child of the node onto the stack and ensures right subtree will be visited after left subtree
-            stack.append(node.l) # vice-versa to stack.append(node.r) for pre-order traversal
+            pre_stack.append(node.r) # pushes right child of the node onto the stack and ensures right subtree will be visited after left subtree
+            pre_stack.append(node.l) # vice-versa to stack.append(node.r) for pre-order traversal
 
 def postorder_traversal(root):
-    stack = [root] # initializes stack with the root to commence post-order traversal
+    post_stack = [root] # initializes stack with the root to commence post-order traversal
     outcome = [] # this creates an empty list 'outcomes' to help store the keys in correct order 
-    while stack: # loops
-        node = stack.pop() # represents the node to be processed for post-order traversal
+    while post_stack: # loops
+        node = post_stack.pop() # represents the node to be processed for post-order traversal
         if node:
             outcome.append(node.key) # this appends the key of the current node to the empty list 'outcome'.
-            stack.append(node.l) # pushes right child of the node onto the stack and ensures right subtree will be visited after left subtree
-            stack.append(node.r) # vice-versa to stack.append(node.r) for post-order traversal
+            post_stack.append(node.l) # pushes right child of the node onto the stack and ensures right subtree will be visited after left subtree
+            post_stack.append(node.r) # vice-versa to stack.append(node.r) for post-order traversal
     while outcome:
         print(outcome.pop(), end=" ") # when all nodes are processed completely, the keys stored
         # in the outcome list are printed in a reversal order to accomplish post-order traversal
