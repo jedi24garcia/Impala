@@ -1,6 +1,18 @@
 #!/usr/bin/env python3
 
-import pandas as pd
+import random
+#import faker
 
-print("**** Welcome TO WHITECLIFFE College of Information Technology ****")
-print("******************** STUDENT PORTAL *************************")
+class Students:
+  def __init__(self):
+    self.firstname = " "
+    self.lastname = " "
+    self.email = " "
+    self.campus = " "
+
+  def StudentInfo(self):
+    print("Enter the student details")
+
+
+# print("**** Welcome TO WHITECLIFFE College of Information Technology ****")
+# print("******************** STUDENT PORTAL *************************")
