@@ -12,7 +12,10 @@ class Students:
 
   def StudentInfo(self):
     print("Enter the student details")
-
+    self.firstname = input("First Name: ")
+    self.lastname = input("Last Name: ")
+    self.email = input("Email Address: ")
+    self.campus = input("Campus: ")
 
 # print("**** Welcome TO WHITECLIFFE College of Information Technology ****")
 # print("******************** STUDENT PORTAL *************************")
