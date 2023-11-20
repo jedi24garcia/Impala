@@ -17,5 +17,3 @@ class Students:
     self.email = input("Email Address: ")
     self.campus = input("Campus: ")
 
-# print("**** Welcome TO WHITECLIFFE College of Information Technology ****")
-# print("******************** STUDENT PORTAL *************************")
