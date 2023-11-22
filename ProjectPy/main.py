@@ -2,10 +2,9 @@
 
 #MAIN
 
+import sys
 from classes import Student
 from utilities import utility, Menu
-import sys
-
 
 def main():
   student_file_name = "students.cvs"
