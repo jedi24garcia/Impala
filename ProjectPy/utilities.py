@@ -21,6 +21,8 @@ class utility():
       print("File exists. I will read from it instead.")
       students = self.read_student_data_file(filename)
   
+    return students
+    
   def generate_student_data_file():
     students = []
     for i in range(file_size):
@@ -32,14 +34,40 @@ class utility():
     
     df.to_csv(file_name, index=False)
 
-    return student
+    return students
+
+# FUNCTION FOR MAIN MENU
 
 class Menu():
   def main_menu(self):
+    print("MAIN MENU")
     print("1. ADD NEW STUDENT")
     print("2. DELETE STUDENT")
     print("3. SHOW STUDENTS")
     print("4. SEARCH STUDENT")
     print("Type EXIT to quit your application")
-    select = int(input("Enter your choice"))
-    return select
+    user_input = int(input("Enter your choice: "))
+    return user_input
+
+# FUNCTION FOR STUDENT ADD MENU
+
+  def student_add_menu():
+    student_menu_options = {
+      1: "First Name",
+      2: "Last Name",
+      3: "Email Address",
+      4: "Campus"
+    }
+
+    for key, value in student_menu_options.items():
+      print(f'{key}. {value}')
+
+      user_input = int(input("Enter the student details: "))
+      return user_input
+
+# FUNCTION FOR DELETE STUDENT MENU
+  
+  def student_delete_menu():
+    user_input  = input("Enter student ID to delete the record: ")
+    print("*******************\nDELETE STUDENT MENU\n*******************")
+    return user_input

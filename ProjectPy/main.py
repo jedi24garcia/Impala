@@ -2,7 +2,7 @@
 
 #MAIN
 
-from classes import Students
+from classes import Student
 from utilities import utility, Menu
 import sys
 
@@ -11,8 +11,8 @@ def main():
   student_file_name = "students.cvs"
   student_file_size = 500
   utilities = utility()
-  students = utilities.student_data_file(student_file_name, student_file_size)
-  # students = (student_file_name, student_file_size)
+  # students = utilities.student_data_file(student_file_name, student_file_size)
+  students = (student_file_name, student_file_size)
 
   menu = Menu()
 
