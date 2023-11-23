@@ -4,12 +4,14 @@
 
 
 import random
-# from faker import Faker
-import mimesis
+from faker import Faker
+# import mimesis
 
 
 class Student:
-  def __init__(self, firstname, lastname, email, campus):
+  faker = Faker()
+
+  def __init__(self, firstname="", lastname="", email="", campus=""): 
     self.firstname = firstname
     self.lastname = lastname
     self.email = email
@@ -23,23 +25,25 @@ class Student:
     self.campus = input("Campus: ")
 
   def generate_info(self):
-    self.firstname.generate()
-    self.lastname.generate()
-    self.email.generate()
-    self.campus.generate()
+    self.firstname_generate()
+    self.lastname_generate()
+    self.email_generate()
+    self.campus_generate()
 
   def firstname_generate(self):
-    self.firstname = mimesis.first_name()
+    # faker = Faker()
+    self.firstname = self.faker.first_name()
 
-  def lastname_generator(self):
-    self.lastname = mimesis.last_name()
+  def lastname_generate(self):
+    # faker = Faker
+    self.lastname = self.faker.last_name()
 
   def email_generate(self):
-    self.email = self.firstname + '.' + self.lastname + '@whitecliffe.ac.nz'
+    self.email = f'{self.firstname.lower()}.{self.lastname.lower()}@whitecliffe.ac.nz'
 
   def campus_generate(self):
     campuses = ["Auckland, Wellington, Christchurch"]
-    self.campus = random.choices(campuses)
+    self.campus = random.choice(campuses)
 
   def __str__(self):
     return "{} {} {} {}".format(

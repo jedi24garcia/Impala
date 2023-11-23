@@ -4,6 +4,7 @@
 
 import pandas as pd
 import os, random
+from classes import Student
 
 class utility():
   def file_exists(self, file_name):
@@ -19,15 +20,20 @@ class utility():
       print("File generated successfully")
     else:
       print("File exists. I will read from it instead.")
-      students = self.read_student_data_file(filename)
+      students = self.read_student_data_file(file_name)
+      # students = self.student_data_file(file_name, file_size)
   
     return students
     
-  def generate_student_data_file():
+  def generate_student_data_file(self, file_name, file_size):
     students = []
     for i in range(file_size):
       student = Student()
-      student.generate_date()
+      # student.firstname_generate()
+      # student.lastname_generate()
+      # student.email_generate()
+      # student.campus()
+      student.generate_info()
       students.append(student)
     
     df = pd.DataFrame([s.__dict__ for s in students])
@@ -35,6 +41,26 @@ class utility():
     df.to_csv(file_name, index=False)
 
     return students
+  
+  def read_student_data_file(self,file_name):
+      # Read the CSV file into a DataFrame
+      df = pd.read_csv(file_name)
+
+      # Convert the DataFrame into a list of Student objects
+      students = []
+      for i in range(len(df)):
+          student = Student()
+          student.__dict__ = df.iloc[i].to_dict()
+          students.append(student)
+
+      return students
+
+  def save_student_data_file(self,file_name,students):
+      # Convert the list of Student objects into a DataFrame
+      df = pd.DataFrame([s.__dict__ for s in students])
+
+      # Write the DataFrame into a CSV file
+      df.to_csv(file_name, index=False)
 
 # FUNCTION FOR MAIN MENU
 

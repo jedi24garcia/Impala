@@ -7,13 +7,15 @@ from classes import Student
 from utilities import utility, Menu
 
 def main():
-  student_file_name = "students.cvs"
+  student_file_name = "students.csv"
   student_file_size = 500
   utilities = utility()
-  # students = utilities.student_data_file(student_file_name, student_file_size)
-  students = (student_file_name, student_file_size)
+  student = utilities.student_data_file(student_file_name, student_file_size)
+  # students = (student_file_name, student_file_size)
 
   menu = Menu()
+
+  # student_attributes_list = ['firstname', 'lastname', 'email', 'campus']
 
 # calls the main function
 if __name__ == "__main__":
