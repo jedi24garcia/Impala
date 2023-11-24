@@ -5,6 +5,7 @@
 import pandas as pd
 import os, random
 from classes import Student
+import csv
 
 class utility():
   def file_exists(self, file_name):
@@ -29,12 +30,10 @@ class utility():
     students = []
     for i in range(file_size):
       student = Student()
-      # student.firstname_generate()
-      # student.lastname_generate()
-      # student.email_generate()
-      # student.campus()
       student.generate_info()
       students.append(student)
+
+# CSV starts here
     
     df = pd.DataFrame([s.__dict__ for s in students])
     
