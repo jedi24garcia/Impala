@@ -48,7 +48,7 @@ class Menu():
     print("2. DELETE STUDENT")
     print("3. SHOW STUDENTS")
     print("4. SEARCH STUDENT")
-    print("Type EXIT to quit your application")
+    print("5. To exit program")
     user_input = int(input("Enter your choice: "))
     return user_input
 
