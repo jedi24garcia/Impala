@@ -19,7 +19,7 @@ class utility():
       print("File does not exist.")
       return []
     else:
-      print("Reading data from the file")
+      print("File exist.")
       return self.read_student_data_file(file_name)
 
   def read_student_data_file(self, file_name):
@@ -28,8 +28,6 @@ class utility():
     with open(file_name, 'r') as file:
       lines = file.readlines()
       for line in lines:
-        data = line.strip().split(',')
-        # student = Student(id=data[0], first_name=data[1], last_name=data[2], email=data[3], campus=data[4])
         data = line.strip().split('\t') 
         students.append(students)
     return students
