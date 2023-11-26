@@ -22,7 +22,7 @@ def main():
       student.student_info()
       students.append(student)
       # students_list_modified = True
-      print("New student added")
+      print("*** Record Successfully added. ***")
     if choice == 5:
       print("Thanks")
       break
