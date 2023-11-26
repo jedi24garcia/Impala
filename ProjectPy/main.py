@@ -10,7 +10,7 @@ def main():
   student_file_name = "student_data.txt"
   student_file_size = 500
   utilities = utility()
-  # student = utilities.student_data_file(student_file_name, student_file_size)
+  student = utilities.student_data_file(student_file_name, student_file_size)
   # students = (student_file_name, student_file_size)
 
   menu = Menu()

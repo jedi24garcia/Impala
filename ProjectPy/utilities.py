@@ -4,15 +4,9 @@
 
 import pandas as pd
 import os, random
-# from classes import Student
+from classes import Student
 import csv
 
-class utility():
-  def generate_student_data_file(self):
-    with open("student_data.txt") as f:
-      lines = f.readlines()
-
-"""
 class utility():
   def file_exists(self, file_name):
     if os.path.isfile(file_name):
@@ -22,55 +16,30 @@ class utility():
 
   def student_data_file(self, file_name, file_size):
     if not self.file_exists(file_name):
-      print("File does not exist. I will generate a new one.")
-      students = self.generate_student_data_file(file_name, file_size)
-      print("File generated successfully") 
+      print("File does not exist.")
+      return []
     else:
-      print("File exists. I will read from it instead.")
-      students = self.read_student_data_file(file_name)
-  
+      print("Reading data from the file")
+      return self.read_student_data_file(file_name)
+
+  def read_student_data_file(self, file_name):
+    file_path = os.path.join(os.path.dirname(__file__), file_name)
+    students = []
+    with open(file_name, 'r') as file:
+      lines = file.readlines()
+      for line in lines:
+        data = line.strip().split(',')
+        # student = Student(id=data[0], first_name=data[1], last_name=data[2], email=data[3], campus=data[4])
+        data = line.strip().split('\t') 
+        students.append(students)
     return students
-      
-  def generate_student_data_file(self, file_name, file_size):
-    with open("student_data.txt") as f:
-      lines = f.readlines()
-"""   
-# # Don't need it
-#   def generate_student_data_file(self, file_name, file_size):
-#     # generates random data 
-#     students = []
-#     for i in range(file_size):
-#       student = Student()
-#       student.generate_info()
-#       students.append(student)
 
-# # CSV starts here
-    
-#     df = pd.DataFrame([s.__dict__ for s in students])
-    
-#     df.to_csv(file_name, index=False)
+  # def save_student_data_file(self,file_name,students):
+  #     # Convert the list of Student objects into a DataFrame
+  #     df = pd.DataFrame([s.__dict__ for s in students])
 
-#     return students
-  
-#   def read_student_data_file(self,file_name):
-#       # Read the CSV file into a DataFrame
-#       df = pd.read_csv(file_name)
-
-#       # Convert the DataFrame into a list of Student objects
-#       students = []
-#       for i in range(len(df)):
-#           student = Student()
-#           student.__dict__ = df.iloc[i].to_dict()
-#           students.append(student)
-
-#       return students
-
-#   def save_student_data_file(self,file_name,students):
-#       # Convert the list of Student objects into a DataFrame
-#       df = pd.DataFrame([s.__dict__ for s in students])
-
-#       # Write the DataFrame into a CSV file
-#       df.to_csv(file_name, index=False)
+  #     # Write the DataFrame into a CSV file
+  #     df.to_csv(file_name, index=False)
 
 # FUNCTION FOR MAIN MENU
 
