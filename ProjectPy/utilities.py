@@ -52,25 +52,16 @@ class Menu():
     user_input = int(input("Enter your choice: "))
     return user_input
 
-# FUNCTION FOR STUDENT ADD MENU
+  # def student_add_menu():
+  #   student_menu_options = {
+  #     1: "First Name",
+  #     2: "Last Name",
+  #     3: "Email Address",
+  #     4: "Campus"
+  #   }
 
-  def student_add_menu():
-    student_menu_options = {
-      1: "First Name",
-      2: "Last Name",
-      3: "Email Address",
-      4: "Campus"
-    }
+  #   for key, value in student_menu_options.items():
+  #     print(f'{key}. {value}')
 
-    for key, value in student_menu_options.items():
-      print(f'{key}. {value}')
-
-      user_input = int(input("Enter the student details: "))
-      return user_input
-
-# FUNCTION FOR DELETE STUDENT MENU
-  
-  def student_delete_menu():
-    user_input  = input("Enter student ID to delete the record: ")
-    print("*******************\nDELETE STUDENT MENU\n*******************")
-    return user_input
+  #     user_input = int(input("Enter the student details: "))
+  #     return user_input
