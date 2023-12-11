@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from classes import Student
+from classes import Student, Teacher
 from utilities import student_database
 
 
@@ -17,13 +17,13 @@ def main():
 
         choice = input("Please select your choice: ").lower()
 
-        if choice == '4':
+        if choice == "4":
             break
-        elif choice == '1':
+        elif choice == "1":
             second_menu()
-        elif choice == '2':
-            second_menu()
-        elif choice == '3':
+        elif choice == "2":
+            third_menu()
+        elif choice == "3":
             second_menu()
 
 def second_menu():
@@ -38,28 +38,46 @@ def second_menu():
 
         choice = input("Enter your choice: ").lower()
 
-        if choice == 'exit':
+        if choice == "exit":
             break
-        elif choice == '1':
+        elif choice == "1":
             add_new_student_menu(student_db)
-        elif choice == '2':
+        elif choice == "2":
             delete_student_menu(student_db)
-        elif choice == '3':
+        elif choice == "3":
             show_students_menu(student_db)
-        elif choice == '4':
+        elif choice == "4":
             search_student_menu(student_db)
         else:
             print("Invalid choice. Please try again.")
 
-def add_new_student_menu(self, student_db):
+def third_menu():
+    
+    while True:
+        print("\nMAIN MENU")
+        print("1. ADD NEW TEACHER")
+        print("2. DELETE TEACHER")
+        print("3. SHOW TEACHER LIST")
+        print("4. SEARCH FOR TEACHER")
+        print("Type EXIT to quit this menu")
+        
+        choice = input("Enter your choice: ").lower()
+
+        if choice == "exit":
+            break
+        elif choice == "1":
+            teacher = Teacher()
+            teacher.teacher_add_info()
+
+def add_new_student_menu(student_db):
     print("\n*******************\nSTUDENT ADD MENU\n*******************")
     print("Enter the student details")
-    self.firstname = input("Enter First Name: ")
-    self.lastname = input("Enter Last Name: ")
-    self.email = input("Enter Email Address: ")
-    self.campus = input("Campus (Auckland, Hamilton, Wellington, Christchurch, and Dunedin): ")
+    firstname = input("Enter First Name: ")
+    lastname = input("Enter Last Name: ")
+    email = input("Enter Email Address: ")
+    campus = input("Campus (Auckland, Hamilton, Wellington, Christchurch, and Dunedin): ")
 
-    new_student = Student(self.firstname, self.lastname, self.email, self.campus)
+    new_student = Student(firstname, lastname, email, campus)
     student_db.add_new_student(new_student)
 
     print("\n*** Record Successfully added. ***")
@@ -112,6 +130,7 @@ def search_student_menu(student_db):
 
     search_value = input(f"Enter the {search_by} to search: ")
     student_db.search_student(search_by, search_value)
+    
 
 if __name__ == "__main__":
     student_db = student_database()

@@ -1,4 +1,9 @@
+import os
 import csv
+import pandas
+# from classes import Teacher
+
+# Students Database
 
 class student_database:
     def __init__(self):
@@ -47,3 +52,57 @@ class student_database:
                     'Campus': data[3],
                     'ID': data[4],
                 })
+
+# Teachers Database
+
+# class teachers_database():
+#     def file_exists(self, file_name):
+#         if os.path.isfile(file_name):
+#             return True
+#         else:
+#             return False
+
+#     def teacher_data(self, file_name, file_size):
+#         if not self.file_exists(file_name):
+#             print("File does not exist. Generating a new one.")
+#             teachers = self.generate_teacher_data_file(file_name, file_size)
+#             print("File generated!")
+#         else:
+#             print("File already exists.")
+#             teachers = self.read_teacher_data_file(file_name)
+        
+#         return teachers
+
+#     def generate_teacher_data_file(self, file_name, file_size):
+#         teachers = []
+#         for i in range(file_size):
+#             teacher = Teacher()
+#             teacher.generate_teachers_data()
+#             teachers.append(teacher)
+
+#         df = pandas.DataFrame([t.__dict__ for t in teachers])
+
+#         df.to_csv(file_name, index=False)
+
+#         return teachers
+
+#     def read_teacher_data_file(self,file_name):
+#         # Read the CSV file into a DataFrame
+#         df = pandas.read_csv(file_name)
+
+#         # Convert the DataFrame into a list of Teacher objects
+#         teachers = []
+#         for i in range(len(df)):
+#             teacher = Teacher()
+#             teacher.__dict__ = df.iloc[i].to_dict()
+#             teachers.append(teacher)
+
+#         return teachers
+
+#     def save_teacher_data_file(self,file_name,teachers):
+#         # Convert the list of Teacher objects into a DataFrame
+#         df = pandas.DataFrame([t.__dict__ for t in teachers])
+
+#         # Write the DataFrame into a CSV file
+#         df.to_csv(file_name, index=False)
+        
