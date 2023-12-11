@@ -4,6 +4,9 @@ class student_database:
     def __init__(self):
         self.students = []
 
+    def generate_id(self, firstname, lastname):
+        return f"{firstname[:3]}{lastname[:3]}{str(2023)[-2:]}"
+
     def add_new_student(self, student):
         self.students.append(student)
 
@@ -29,18 +32,18 @@ class student_database:
           lines = txt_file.readlines()
 
         with open('student_data.csv', mode="w", newline="") as csv_file: 
-          fieldnames = ['First Name', 'Last Name', 'Email', 'Campus']
+          fieldnames = ['First Name', 'Last Name', 'Email', 'Campus', 'ID']
           writer = csv.DictWriter(csv_file, fieldnames=fieldnames, delimiter='\t') 
 
           writer.writeheader()
 
           for line in lines:
               data = line.strip().split('\t')
-              if len(data) >= 4:
+              if len(data) >= 5:
                 writer.writerow({
-                  # 'ID': student.id,
                     'First Name': data[0],
                     'Last Name': data[1],
                     'Email': data[2],
                     'Campus': data[3],
+                    'ID': data[4],
                 })

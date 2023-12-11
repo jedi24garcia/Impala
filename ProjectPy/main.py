@@ -1,22 +1,40 @@
 #!/usr/bin/env python3
 
-
 from classes import Student
 from utilities import student_database
 
 
 def main():
-
+    
     while True:
         print("\n**** Welcome TO WHITECLIFFE College of Information Technology ***")
         print("******************** STUDENT PORTAL *************************")
         print("CSV file 'student_data.csv' successfully loaded")
+        print("\n1. Student")
+        print("2. Teacher")
+        print("3. Course")
+        print("4. Exit Program")
+
+        choice = input("Please select your choice: ").lower()
+
+        if choice == '4':
+            break
+        elif choice == '1':
+            second_menu()
+        elif choice == '2':
+            second_menu()
+        elif choice == '3':
+            second_menu()
+
+def second_menu():
+
+    while True:
         print("\nMAIN MENU")
         print("1. ADD NEW STUDENT")
         print("2. DELETE STUDENT")
         print("3. SHOW STUDENTS")
         print("4. SEARCH STUDENT")
-        print("Type EXIT to quit the application")
+        print("Type EXIT to quit this menu")
 
         choice = input("Enter your choice: ").lower()
 
@@ -33,15 +51,15 @@ def main():
         else:
             print("Invalid choice. Please try again.")
 
-def add_new_student_menu(student_db):
+def add_new_student_menu(self, student_db):
     print("\n*******************\nSTUDENT ADD MENU\n*******************")
     print("Enter the student details")
-    firstname = input("Enter First Name: ")
-    lastname = input("Enter Last Name: ")
-    email = input("Enter Email Address: ")
-    campus = input("Campus (Auckland, Hamilton, Wellington, Christchurch, and Dunedin): ")
+    self.firstname = input("Enter First Name: ")
+    self.lastname = input("Enter Last Name: ")
+    self.email = input("Enter Email Address: ")
+    self.campus = input("Campus (Auckland, Hamilton, Wellington, Christchurch, and Dunedin): ")
 
-    new_student = Student(firstname, lastname, email, campus)
+    new_student = Student(self.firstname, self.lastname, self.email, self.campus)
     student_db.add_new_student(new_student)
 
     print("\n*** Record Successfully added. ***")
