@@ -62,18 +62,13 @@ class StudentDatabase:
                     'Email': data[2],
                     'Campus': data[3],
                 })
-              else:
-                print(f"Skipping invalid line: {line}")
-           
-
-          print("CSV file 'student_data.csv' successfully loaded")
-
 
 def main():
 
     while True:
         print("\n**** Welcome TO WHITECLIFFE College of Information Technology ***")
         print("******************** STUDENT PORTAL *************************")
+        print("CSV file 'student_data.csv' successfully loaded")
         print("\nMAIN MENU")
         print("1. ADD NEW STUDENT")
         print("2. DELETE STUDENT")
