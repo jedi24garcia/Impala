@@ -11,9 +11,6 @@ def main():
     teachers = teacher_utilities.teacher_data_file(teacher_file_name, teacher_file_size)
 
     while True:
-        print("\n**** Welcome TO WHITECLIFFE College of Information Technology ***")
-        print("******************** STUDENT PORTAL *************************")
-        print("CSV file 'student_data.csv' successfully loaded")
         print("\n1. Student")
         print("2. Teacher")
         print("3. Course")
@@ -142,4 +139,7 @@ def search_student_menu(student_db):
 if __name__ == "__main__":
     student_db = student_database()
     student_db.txt_to_csv()
+    print("\n**** Welcome TO WHITECLIFFE College of Information Technology ***")
+    print("******************** STUDENT PORTAL *************************")
+    print("CSV file 'student_data.csv' successfully loaded")
     main()
