@@ -6,18 +6,11 @@ import csv
 
 class Student:
     def __init__(self, firstname="", lastname="", email="", campus=""):
-        self.id = self.generate_id(firstname, lastname)
         self.firstname = firstname
         self.lastname = lastname
         self.email = email
         self.campus = campus
-        self.id = self.generate_id(firstname, lastname)
        
-
-    def generate_id(self, firstname, lastname):
-        # Implementation of ID generation logic
-        return f"{firstname[:3]}{lastname[:3]}{str(2023)[-2:]}"
-
 class StudentDatabase:
     def __init__(self):
         self.students = []
