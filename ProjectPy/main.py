@@ -1,60 +1,9 @@
 #!/usr/bin/env python3
 
-import csv
 
-# CLASS
+from classes import Student
+from utilities import student_database
 
-class Student:
-    def __init__(self, firstname="", lastname="", email="", campus=""):
-        self.firstname = firstname
-        self.lastname = lastname
-        self.email = email
-        self.campus = campus
-       
-class StudentDatabase:
-    def __init__(self):
-        self.students = []
-
-    def add_student(self, student):
-        self.students.append(student)
-
-    def delete_student(self, student_id):
-        self.students = [s for s in self.students if s.id != student_id]
-
-    def show_students(self, order_by):
-        # Implementation of sorting logic based on order_by parameter
-        # Use Python's built-in sorting functions
-        sorted_students = sorted(self.students, key=lambda x: getattr(x, order_by))
-        for student in sorted_students:
-            print(f"ID: {student.id}, Name: {student.firstname} {student.lastname}, Email: {student.email}, Campus: {student.campus}")
-
-    def search_student(self, search_by, value):
-        # Implementation of searching logic based on search_by parameter
-        # Use Python's built-in filtering functions
-        result_students = [s for s in self.students if getattr(s, search_by) == value]
-        for student in result_students:
-            print(f"ID: {student.id}, Name: {student.firstname} {student.lastname}, Email: {student.email}, Campus: {student.campus}")
-
-    def txt_to_csv(self):
-        with open('student_data.txt', mode="r", newline="") as txt_file:
-          lines = txt_file.readlines()
-
-        with open('student_data.csv', mode="w", newline="") as csv_file: 
-          fieldnames = ['First Name', 'Last Name', 'Email', 'Campus']
-          writer = csv.DictWriter(csv_file, fieldnames=fieldnames, delimiter='\t') 
-
-          writer.writeheader()
-
-          for line in lines:
-              data = line.strip().split('\t')
-              if len(data) >= 4:
-                writer.writerow({
-                  # 'ID': student.id,
-                    'First Name': data[0],
-                    'Last Name': data[1],
-                    'Email': data[2],
-                    'Campus': data[3],
-                })
 
 def main():
 
@@ -74,7 +23,7 @@ def main():
         if choice == 'exit':
             break
         elif choice == '1':
-            add_student_menu(student_db)
+            add_new_student_menu(student_db)
         elif choice == '2':
             delete_student_menu(student_db)
         elif choice == '3':
@@ -84,15 +33,16 @@ def main():
         else:
             print("Invalid choice. Please try again.")
 
-def add_student_menu(student_db):
+def add_new_student_menu(student_db):
     print("\n*******************\nSTUDENT ADD MENU\n*******************")
+    print("Enter the student details")
     firstname = input("Enter First Name: ")
     lastname = input("Enter Last Name: ")
     email = input("Enter Email Address: ")
-    campus = input("Enter Campus: ")
+    campus = input("Campus (Auckland, Hamilton, Wellington, Christchurch, and Dunedin): ")
 
     new_student = Student(firstname, lastname, email, campus)
-    student_db.add_student(new_student)
+    student_db.add_new_student(new_student)
 
     print("\n*** Record Successfully added. ***")
 
@@ -146,6 +96,6 @@ def search_student_menu(student_db):
     student_db.search_student(search_by, search_value)
 
 if __name__ == "__main__":
-    student_db = StudentDatabase()
+    student_db = student_database()
     student_db.txt_to_csv()
     main()
