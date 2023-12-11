@@ -1,14 +1,22 @@
+#!/usr/bin/env python3
+
+import csv
+
+# CLASS
+
 class Student:
-    def __init__(self, first_name, last_name, email, campus):
-        self.id = self.generate_id(first_name, last_name)
-        self.first_name = first_name
-        self.last_name = last_name
+    def __init__(self, firstname="", lastname="", email="", campus=""):
+        self.id = self.generate_id(firstname, lastname)
+        self.firstname = firstname
+        self.lastname = lastname
         self.email = email
         self.campus = campus
+        self.id = self.generate_id(firstname, lastname)
+       
 
-    def generate_id(self, first_name, last_name):
+    def generate_id(self, firstname, lastname):
         # Implementation of ID generation logic
-        return f"{first_name[:3]}{last_name[:3]}{str(2023)[-2:]}"
+        return f"{firstname[:3]}{lastname[:3]}{str(2023)[-2:]}"
 
 class StudentDatabase:
     def __init__(self):
@@ -25,17 +33,43 @@ class StudentDatabase:
         # Use Python's built-in sorting functions
         sorted_students = sorted(self.students, key=lambda x: getattr(x, order_by))
         for student in sorted_students:
-            print(f"ID: {student.id}, Name: {student.first_name} {student.last_name}, Email: {student.email}, Campus: {student.campus}")
+            print(f"ID: {student.id}, Name: {student.firstname} {student.lastname}, Email: {student.email}, Campus: {student.campus}")
 
     def search_student(self, search_by, value):
         # Implementation of searching logic based on search_by parameter
         # Use Python's built-in filtering functions
         result_students = [s for s in self.students if getattr(s, search_by) == value]
         for student in result_students:
-            print(f"ID: {student.id}, Name: {student.first_name} {student.last_name}, Email: {student.email}, Campus: {student.campus}")
+            print(f"ID: {student.id}, Name: {student.firstname} {student.lastname}, Email: {student.email}, Campus: {student.campus}")
+
+    def txt_to_csv(self):
+        with open('student_data.txt', mode="r", newline="") as txt_file:
+          lines = txt_file.readlines()
+
+        with open('student_data.csv', mode="w", newline="") as csv_file: 
+          fieldnames = ['First Name', 'Last Name', 'Email', 'Campus']
+          writer = csv.DictWriter(csv_file, fieldnames=fieldnames, delimiter='\t') 
+
+          writer.writeheader()
+
+          for line in lines:
+              data = line.strip().split('\t')
+              if len(data) >= 4:
+                writer.writerow({
+                  # 'ID': student.id,
+                    'First Name': data[0],
+                    'Last Name': data[1],
+                    'Email': data[2],
+                    'Campus': data[3],
+                })
+              else:
+                print(f"Skipping invalid line: {line}")
+           
+
+          print("CSV file 'student_data.csv' successfully loaded")
+
 
 def main():
-    student_db = StudentDatabase()
 
     while True:
         print("\n**** Welcome TO WHITECLIFFE College of Information Technology ***")
@@ -64,12 +98,12 @@ def main():
 
 def add_student_menu(student_db):
     print("\n*******************\nSTUDENT ADD MENU\n*******************")
-    first_name = input("Enter First Name: ")
-    last_name = input("Enter Last Name: ")
+    firstname = input("Enter First Name: ")
+    lastname = input("Enter Last Name: ")
     email = input("Enter Email Address: ")
     campus = input("Enter Campus: ")
 
-    new_student = Student(first_name, last_name, email, campus)
+    new_student = Student(firstname, lastname, email, campus)
     student_db.add_student(new_student)
 
     print("\n*** Record Successfully added. ***")
@@ -94,9 +128,9 @@ def show_students_menu(student_db):
     if choice == '1':
         student_db.show_students('id')
     elif choice == '2':
-        student_db.show_students('first_name')
+        student_db.show_students('firstname')
     elif choice == '3':
-        student_db.show_students('last_name')
+        student_db.show_students('lastname')
     elif choice == '4':
         student_db.show_students('campus')
     else:
@@ -113,9 +147,9 @@ def search_student_menu(student_db):
     if choice == '1':
         search_by = 'id'
     elif choice == '2':
-        search_by = 'first_name'
+        search_by = 'firstname'
     elif choice == '3':
-        search_by = 'last_name'
+        search_by = 'lastname'
     else:
         print("Invalid choice. Please try again.")
         return
@@ -124,4 +158,6 @@ def search_student_menu(student_db):
     student_db.search_student(search_by, search_value)
 
 if __name__ == "__main__":
+    student_db = StudentDatabase()
+    student_db.txt_to_csv()
     main()
