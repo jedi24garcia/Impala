@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 
 from classes import Student, Teacher
-from utilities import student_database
-
+from utilities import student_database, teacher_database
 
 def main():
-    
+
+    teacher_file_name = "teachers.csv"
+    teacher_file_size = 100
+    teacher_utilities = teacher_database()
+    teachers = teacher_utilities.teacher_data_file(teacher_file_name, teacher_file_size)
+
     while True:
         print("\n**** Welcome TO WHITECLIFFE College of Information Technology ***")
         print("******************** STUDENT PORTAL *************************")
@@ -68,6 +72,9 @@ def third_menu():
         elif choice == "1":
             teacher = Teacher()
             teacher.teacher_add_info()
+        elif choice == "2":
+            teacher = Teacher()
+            teacher.teacher_delete_info()
 
 def add_new_student_menu(student_db):
     print("\n*******************\nSTUDENT ADD MENU\n*******************")

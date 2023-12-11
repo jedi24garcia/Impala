@@ -1,7 +1,7 @@
 import os
 import csv
 import pandas
-# from classes import Teacher
+from classes import Teacher
 
 # Students Database
 
@@ -55,54 +55,57 @@ class student_database:
 
 # Teachers Database
 
-# class teachers_database():
-#     def file_exists(self, file_name):
-#         if os.path.isfile(file_name):
-#             return True
-#         else:
-#             return False
+class teacher_database:
+    def file_exists(self,file_name):
+        # return os.path.isfile(file_name)
+        if os.path.isfile(file_name):
+            return True
+        else:
+            return False
 
-#     def teacher_data(self, file_name, file_size):
-#         if not self.file_exists(file_name):
-#             print("File does not exist. Generating a new one.")
-#             teachers = self.generate_teacher_data_file(file_name, file_size)
-#             print("File generated!")
-#         else:
-#             print("File already exists.")
-#             teachers = self.read_teacher_data_file(file_name)
-        
-#         return teachers
+    def teacher_data_file(self, file_name, file_size):
+        if not self.file_exists(file_name):
+            print('File does not exist. I will generate a new one.')
+            teachers = self.generate_teacher_data_file(file_name, file_size)
+            print('File generated successfully.')
+        else:
+            print('File exists. I will read from it instead.')
+            teachers = self.read_teacher_data_file(file_name)
 
-#     def generate_teacher_data_file(self, file_name, file_size):
-#         teachers = []
-#         for i in range(file_size):
-#             teacher = Teacher()
-#             teacher.generate_teachers_data()
-#             teachers.append(teacher)
+        return teachers
 
-#         df = pandas.DataFrame([t.__dict__ for t in teachers])
+    def generate_teacher_data_file(self,file_name,file_size):
+        # Generate random teacher data
+        teachers = []
+        for i in range(file_size):
+            teacher = Teacher()
+            teacher.generate_data()
+            teachers.append(teacher)
 
-#         df.to_csv(file_name, index=False)
+        # Convert the list of Teacher objects into a DataFrame
+        df = pandas.DataFrame([t.__dict__ for t in teachers])
 
-#         return teachers
+        # Write the DataFrame into a CSV file
+        df.to_csv(file_name, index=False)
 
-#     def read_teacher_data_file(self,file_name):
-#         # Read the CSV file into a DataFrame
-#         df = pandas.read_csv(file_name)
+        return teachers
 
-#         # Convert the DataFrame into a list of Teacher objects
-#         teachers = []
-#         for i in range(len(df)):
-#             teacher = Teacher()
-#             teacher.__dict__ = df.iloc[i].to_dict()
-#             teachers.append(teacher)
+    def read_teacher_data_file(self,file_name):
+        # Read the CSV file into a DataFrame
+        df = pandas.read_csv(file_name)
 
-#         return teachers
+        # Convert the DataFrame into a list of Teacher objects
+        teachers = []
+        for i in range(len(df)):
+            teacher = Teacher()
+            teacher.__dict__ = df.iloc[i].to_dict()
+            teachers.append(teacher)
 
-#     def save_teacher_data_file(self,file_name,teachers):
-#         # Convert the list of Teacher objects into a DataFrame
-#         df = pandas.DataFrame([t.__dict__ for t in teachers])
+        return teachers
 
-#         # Write the DataFrame into a CSV file
-#         df.to_csv(file_name, index=False)
-        
+    def save_teacher_data_file(self,file_name,teachers):
+        # Convert the list of Teacher objects into a DataFrame
+        df = pandas.DataFrame([t.__dict__ for t in teachers])
+
+        # Write the DataFrame into a CSV file
+        df.to_csv(file_name, index=False)
