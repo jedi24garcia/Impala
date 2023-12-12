@@ -1,7 +1,7 @@
 import os
 import csv
 import pandas
-from classes import Teacher
+from classes import Teacher, Student
 
 # Students Database
 
@@ -19,7 +19,7 @@ class Student_Database:
         if student_id in range(100, 601):
             print(f"\n**** Student with ID ({student_id}) is deleted from the system.")
         else:
-            print("\nNo student found.")
+            print("No student found.")
 
     # def show_students(self, order_by):
     #     # Implementation of sorting logic based on order_by parameter
@@ -38,25 +38,24 @@ class Student_Database:
     def txt_to_csv(self):
         students = []
         with open('student_data.txt', mode="r", newline="") as txt_file:
-          lines = txt_file.readlines()
+            lines = txt_file.readlines()
 
-        with open('student_data.csv', mode="w", newline="") as csv_file: 
-            fieldnames = ['First Name', 'Last Name', 'Email', 'Campus', 'ID']
-            writer = csv.DictWriter(csv_file, fieldnames=fieldnames, delimiter='\t') 
+        for line in lines:
+            data = line.strip().split('\t')
+            if len(data) >= 5:
+                student = Student(
+                    firstname=data[0],
+                    lastname=data[1],
+                    email=data[2],
+                    campus=data[3],
+                    id=data[4]
+                )
+                students.append(student)
 
-            writer.writeheader()
+        # Update the self.students list with the newly read data
+        self.students = students
 
-            for line in lines:
-                data = line.strip().split('\t')
-                if len(data) >= 5:
-                    writer.writerow({
-                        'First Name': data[0],
-                        'Last Name': data[1],
-                        'Email': data[2],
-                        'Campus': data[3],
-                        'ID': data[4],
-                    })
-            return students
+        return students
 
 
 # Teachers Database

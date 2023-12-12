@@ -5,14 +5,10 @@ from utilities import Student_Database, teacher_database, AlgoMenus
 from formulas import SortingAlgorithms, SearchingAlgorithms
 
 
-student_database = Student_Database()
-students = student_database.txt_to_csv
-
-student = Student()
-student_list_modified = False
-
 
 def main():
+    student_database = Student_Database()
+    students = student_db.txt_to_csv()
 
     teacher_file_name = "teachers.csv"
     teacher_file_size = 100
@@ -143,20 +139,24 @@ def show_students_menu(student_db):
         
         choice = input("\nPlease select your choice: ")
 
-        if choice == "exit":
+        if choice.lower() == "exit":
             break
         elif choice == '1':
-            sorted_students = SortingAlgorithms.bubble_sort(student_db.get_all_students(), 'id', 'ascending')
-            show_students_menu(sorted_students)
+            sorted_students = SortingAlgorithms.bubble_sort(student_db.students, 'id', 'ascending')
+            for student in sorted_students:
+                print(f"ID: {student.id}, Name: {student.firstname} {student.lastname}, Email: {student.email}, Campus: {student.campus}")
         elif choice == '2':
-            sorted_students = SortingAlgorithms.quick_sort(student_db.get_all_students(), 'firstname', 'ascending')
-            show_students_menu(sorted_students)
+            sorted_students = SortingAlgorithms.quick_sort(student_db.students, 'firstname', 'ascending')
+            for student in sorted_students:
+                print(f"ID: {student.id}, Name: {student.firstname} {student.lastname}, Email: {student.email}, Campus: {student.campus}")
         elif choice == '3':
-            sorted_students = SortingAlgorithms.quick_sort(student_db.get_all_students(), 'lastname', 'ascending')
-            show_students_menu(sorted_students)
+            sorted_students = SortingAlgorithms.quick_sort(student_db.students, 'lastname', 'ascending')
+            for student in sorted_students:
+                print(f"ID: {student.id}, Name: {student.firstname} {student.lastname}, Email: {student.email}, Campus: {student.campus}")
         elif choice == '4':
-            sorted_students = SortingAlgorithms.quick_sort(student_db.get_all_students(), 'campus', 'ascending')
-            show_students_menu(sorted_students)
+            sorted_students = SortingAlgorithms.quick_sort(student_db.students, 'campus', 'ascending')
+            for student in sorted_students:
+                print(f"ID: {student.id}, Name: {student.firstname} {student.lastname}, Email: {student.email}, Campus: {student.campus}")
         else:
             print("Invalid choice. Please try again.")
 
