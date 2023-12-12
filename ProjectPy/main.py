@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from classes import Student, Teacher
+from classes import Student, Teacher, Courses
 from utilities import student_database, teacher_database
 
 def main():
@@ -14,18 +14,18 @@ def main():
         print("\n1. Student")
         print("2. Teacher")
         print("3. Course")
-        print("4. Exit Program")
+        print("\nType EXIT to quit this menu")
 
         choice = input("Please select your choice: ").lower()
 
-        if choice == "4":
+        if choice == "Exit":
             break
         elif choice == "1":
             second_menu()
         elif choice == "2":
             third_menu()
         elif choice == "3":
-            second_menu()
+            fourth_menu()
 
 def second_menu():
 
@@ -35,11 +35,11 @@ def second_menu():
         print("2. DELETE STUDENT")
         print("3. SHOW STUDENTS")
         print("4. SEARCH STUDENT")
-        print("Type EXIT to quit this menu")
+        print("\nType EXIT to quit this menu")
 
-        choice = input("Enter your choice: ").lower()
+        choice = input("Please choose a number: ").lower()
 
-        if choice == "exit":
+        if choice == "Exit":
             break
         elif choice == "1":
             add_new_student_menu(student_db)
@@ -60,11 +60,11 @@ def third_menu():
         print("2. DELETE TEACHER")
         print("3. SHOW TEACHER LIST")
         print("4. SEARCH FOR TEACHER")
-        print("Type EXIT to quit this menu")
+        print("\nType EXIT to quit this menu")
         
-        choice = input("Enter your choice: ").lower()
+        choice = input("Please choose a number: ").lower()
 
-        if choice == "exit":
+        if choice == "Exit":
             break
         elif choice == "1":
             teacher = Teacher()
@@ -77,7 +77,28 @@ def third_menu():
             teacher.show_search_data()
         elif choice == "4":
             teacher = Teacher()
-            teacher.show_search_data()            
+            teacher.show_search_data()    
+
+def fourth_menu():
+
+    while True:
+        print("\nCourses")
+        print("1. Data Structures and Algorithms")
+        print("2. Web Development")
+        print("3. Mobile Development")
+        print("\nType EXIT to quit this menu")
+        
+        choice = input("Please choose a number: ")
+
+        if choice == "Exit":
+            break
+        elif choice == "1":
+            course = Courses()
+            course.data_structures()
+        elif choice == "2":
+            course = Courses()
+            course.web_dev()
+
 
 def add_new_student_menu(student_db):
     print("\n*******************\nSTUDENT ADD MENU\n*******************")

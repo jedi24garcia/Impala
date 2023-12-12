@@ -121,9 +121,28 @@ class Teacher:
             self.id,
         )
 
-    # def __str__(self):
-    #     return f'{self.firstname} {self.lastname} {self.qualification} {self.age} {self.email} {self.campus} {self.id}'
-
         
+# Courses
 
+class Courses:
+    def data_structures(self):
+        select_data = input("Would you like to enroll to this course (Y, N): ")
+        if select_data == "Y":
+            print("\nCourse added to the system.")
+        else:
+            return select_data
+
+    def web_dev(self):
+        select_web = input("Would you like to enroll to this course (Y, N): ")
+        if select_web == "Y":
+            print("\nCourse added to the system.")
+        else:
+            return select_web
+
+    def mobile_dev(self):
+        select_mobile = input("Would you like to enroll to this course (Y, N): ")
+        if select_mobile == "Y":
+            print("\nCourse added to the system.")
+        else:
+            return select_mobile
     
