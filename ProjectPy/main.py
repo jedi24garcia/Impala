@@ -108,6 +108,9 @@ def fourth_menu():
         elif choice == "2":
             course = Courses()
             course.web_dev()
+        elif choice == "3":
+            course = Courses()
+            course.mobile_dev()
 
 
 def add_new_student_menu(student_db):

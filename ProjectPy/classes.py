@@ -135,19 +135,22 @@ class Courses:
         if select_data == "Y":
             print("\nCourse added to the system.")
         else:
-            return select_data
+            print("\nThanks")
+        return select_data
 
     def web_dev(self):
         select_web = input("Would you like to enroll to this course (Y, N): ")
         if select_web == "Y":
             print("\nCourse added to the system.")
         else:
-            return select_web
+            print("\nThanks")
+        return select_web
 
     def mobile_dev(self):
         select_mobile = input("Would you like to enroll to this course (Y, N): ")
         if select_mobile == "Y":
             print("\nCourse added to the system.")
         else:
-            return select_mobile
+            print("\nThanks")
+        return select_mobile
     
