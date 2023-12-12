@@ -11,22 +11,23 @@ class Student:
         self.lastname = lastname
         self.email = email
         self.campus = campus
-        self.id = id
+        self.id = id 
 
 
 # Teachers
 
 class Teacher:
-    def __init__(self):
-        self.firstname = ''
-        self.lastname = ''
-        self.qualification = ''
-        self.age = 0
-        self.campus = ''
-        self.email = ''
-        self.id = ''
+    def __init__(self, firstname="", lastname="", qualification="", age="", campus="", email="", id=""):
+        self.firstname = firstname
+        self.lastname = lastname
+        self.qualification = qualification
+        self.age = age
+        self.campus = campus
+        self.email = email
+        self.id = id
 
-    def input_teacher_details(self):
+    def teacher_add_info(self):
+        print("\n*******************\nTEACHER ADD MENU\n*******************")
         print('Enter the following information for the new teacher:')
         self.firstname = input('First name: ')
         self.lastname = input('Last name: ')
@@ -35,6 +36,11 @@ class Teacher:
         self.campus = input("Campus (one of Auckland, Hamilton, Wellington, Christchurch, and Dunedin): ")
         self.email_generate()
         self.id_generate()
+
+    def teacher_delete_info(self):
+        print("\n*******************\nDELETE TEACHER MENU\n*******************")
+        student_id = input("\nEnter teacher ID to delete the record: ")
+        print(f"**** Teacher with ID ({student_id}) is deleted from the system.")
 
     def generate_data(self):
         self.firstname_generate()

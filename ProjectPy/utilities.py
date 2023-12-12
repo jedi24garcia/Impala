@@ -65,11 +65,11 @@ class teacher_database:
 
     def teacher_data_file(self, file_name, file_size):
         if not self.file_exists(file_name):
-            print('File does not exist. I will generate a new one.')
+            print('File does not exist. Generating a new one now.')
             teachers = self.generate_teacher_data_file(file_name, file_size)
-            print('File generated successfully.')
+            print('The file has been successfully generated.')
         else:
-            print('File exists. I will read from it instead.')
+            print('File already exists.')
             teachers = self.read_teacher_data_file(file_name)
 
         return teachers
