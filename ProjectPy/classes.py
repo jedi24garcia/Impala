@@ -45,13 +45,15 @@ class Teacher:
 
 
     def show_search_data(self):
-        print("First Name")
-        print("Last Name")
-        print("Qualification")
-        print("age")
-        print("campus")
-        print("email")
-        print("id")
+        print("1. First Name")
+        print("2. Last Name")
+        print("3. Age")
+        print("4. Campus")
+        print("5. Qualification")
+        print("6. Email")
+        print("7. ID")
+        choice = input("Please choose a number: ")
+        return choice
 
     def generate_data(self):
         self.firstname_generate()
