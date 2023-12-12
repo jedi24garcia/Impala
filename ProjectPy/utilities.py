@@ -5,7 +5,7 @@ from classes import Teacher
 
 # Students Database
 
-class student_database:
+class Student_Database:
     def __init__(self):
         self.students = []
 
@@ -16,14 +16,17 @@ class student_database:
         self.students.append(student)
 
     def delete_student(self, student_id):
-        self.students = [s for s in self.students if s.id != student_id]
+        if student_id in range(100, 601):
+            print(f"\n**** Student with ID ({student_id}) is deleted from the system.")
+        else:
+            print("\nNo student found.")
 
-    def show_students(self, order_by):
-        # Implementation of sorting logic based on order_by parameter
-        # Use Python's built-in sorting functions
-        sorted_students = sorted(self.students, key=lambda x: getattr(x, order_by))
-        for student in sorted_students:
-            print(f"ID: {student.id}, Name: {student.firstname} {student.lastname}, Email: {student.email}, Campus: {student.campus}")
+    # def show_students(self, order_by):
+    #     # Implementation of sorting logic based on order_by parameter
+    #     # Use Python's built-in sorting functions
+    #     sorted_students = sorted(self.students, key=lambda x: getattr(x, order_by))
+    #     for student in sorted_students:
+    #         print(f"ID: {student.id}, Name: {student.firstname} {student.lastname}, Email: {student.email}, Campus: {student.campus}")
 
     def search_student(self, search_by, value):
         # Implementation of searching logic based on search_by parameter
@@ -33,25 +36,28 @@ class student_database:
             print(f"ID: {student.id}, Name: {student.firstname} {student.lastname}, Email: {student.email}, Campus: {student.campus}")
 
     def txt_to_csv(self):
+        students = []
         with open('student_data.txt', mode="r", newline="") as txt_file:
           lines = txt_file.readlines()
 
         with open('student_data.csv', mode="w", newline="") as csv_file: 
-          fieldnames = ['First Name', 'Last Name', 'Email', 'Campus', 'ID']
-          writer = csv.DictWriter(csv_file, fieldnames=fieldnames, delimiter='\t') 
+            fieldnames = ['First Name', 'Last Name', 'Email', 'Campus', 'ID']
+            writer = csv.DictWriter(csv_file, fieldnames=fieldnames, delimiter='\t') 
 
-          writer.writeheader()
+            writer.writeheader()
 
-          for line in lines:
-              data = line.strip().split('\t')
-              if len(data) >= 5:
-                writer.writerow({
-                    'First Name': data[0],
-                    'Last Name': data[1],
-                    'Email': data[2],
-                    'Campus': data[3],
-                    'ID': data[4],
-                })
+            for line in lines:
+                data = line.strip().split('\t')
+                if len(data) >= 5:
+                    writer.writerow({
+                        'First Name': data[0],
+                        'Last Name': data[1],
+                        'Email': data[2],
+                        'Campus': data[3],
+                        'ID': data[4],
+                    })
+            return students
+
 
 # Teachers Database
 
@@ -109,3 +115,24 @@ class teacher_database:
 
         # Write the DataFrame into a CSV file
         df.to_csv(file_name, index=False)
+
+
+class AlgoMenus:
+
+    def sort_menu(self):
+        print("1. Ascending")
+        print("2. Descending(Optional)")
+        choice = int(input("Please select: "))
+        return choice
+
+    def search_formula(self):
+        print("1. Linear Search")
+        print("2. Binary Search")
+        choice = int(input("Please select: "))
+        return choice         
+
+    def formula_menu(self):
+        print("1. Bubble Sort")
+        print("2. Quick Sort")
+        choice = int(input("Please select: "))
+        return choice

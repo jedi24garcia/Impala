@@ -1,7 +1,16 @@
 #!/usr/bin/env python3
 
 from classes import Student, Teacher, Courses
-from utilities import student_database, teacher_database
+from utilities import Student_Database, teacher_database, AlgoMenus
+from formulas import SortingAlgorithms, SearchingAlgorithms
+
+
+student_database = Student_Database()
+students = student_database.txt_to_csv
+
+student = Student()
+student_list_modified = False
+
 
 def main():
 
@@ -13,18 +22,18 @@ def main():
     while True:
         print("\n1. Student")
         print("2. Teacher")
-        print("3. Course")
+        print("3. Courses")
         print("\nType EXIT to quit this application")
 
-        choice = input("\nPlease select your choice: ").lower()
+        select = input("\nPlease select your choice: ").lower()
 
-        if choice == "exit":
+        if select == "exit":
             break
-        elif choice == "1":
+        elif select == "1":
             second_menu()
-        elif choice == "2":
+        elif select == "2":
             third_menu()
-        elif choice == "3":
+        elif select == "3":
             fourth_menu()
 
 def second_menu():
@@ -37,17 +46,18 @@ def second_menu():
         print("4. SEARCH STUDENT")
         print("\nType EXIT to quit this menu")
 
-        choice = input("\nPlease choose a number: ").lower()
+        student_choice = input("\nPlease choose a number: ").lower()
 
-        if choice == "exit":
+
+        if student_choice == "exit":
             break
-        elif choice == "1":
+        elif student_choice == "1":
             add_new_student_menu(student_db)
-        elif choice == "2":
+        elif student_choice == "2":
             delete_student_menu(student_db)
-        elif choice == "3":
+        elif student_choice == "3":
             show_students_menu(student_db)
-        elif choice == "4":
+        elif student_choice == "4":
             search_student_menu(student_db)
         else:
             print("Invalid choice. Please try again.")
@@ -62,20 +72,20 @@ def third_menu():
         print("4. SEARCH FOR TEACHER")
         print("\nType EXIT to quit this menu")
         
-        choice = input("\nPlease choose a number: ").lower()
+        teacher_choice = input("\nPlease choose a number: ").lower()
 
-        if choice == "exit":
+        if teacher_choice == "exit":
             break
-        elif choice == "1":
+        elif teacher_choice == "1":
             teacher = Teacher()
             teacher.teacher_add_info()
-        elif choice == "2":
+        elif teacher_choice == "2":
             teacher = Teacher()
             teacher.teacher_delete_info()
-        elif choice == "3":
+        elif teacher_choice == "3":
             teacher = Teacher()
             teacher.show_search_data()
-        elif choice == "4":
+        elif teacher_choice == "4":
             teacher = Teacher()
             teacher.show_search_data()    
 
@@ -115,16 +125,14 @@ def add_new_student_menu(student_db):
 
 def delete_student_menu(student_db):
     print("\n*******************\nDELETE STUDENT MENU\n*******************")
-    student_id = input("Enter student ID to delete the record: ")
-
+    student_id = int(input("Enter student ID (ranges from 100-600) to delete the record: "))
+    
     student_db.delete_student(student_id)
-
-    print(f"**** Student with ID ({student_id}) is deleted from the system.")
 
 def show_students_menu(student_db):
     while True:
         print("\n*******************\nSTUDENTS SHOW MENU\n*******************")
-        print("1. SHOW ALL STUDENTS BY ID")
+        print("\n1. SHOW ALL STUDENTS BY ID")
         print("2. SHOW ALL STUDENTS BY FIRST NAME (ASCENDING ORDER)")
         print("3. SHOW ALL STUDENTS BY LAST NAME (ASCENDING ORDER)")
         print("4. SHOW ALL STUDENTS BY CAMPUS (ASCENDING ORDER)")
@@ -135,20 +143,24 @@ def show_students_menu(student_db):
         if choice == "exit":
             break
         elif choice == '1':
-            student_db.show_students('id')
+            sorted_students = SortingAlgorithms.bubble_sort(student_db.get_all_students(), 'id', 'ascending')
+            show_students_menu(sorted_students)
         elif choice == '2':
-            student_db.show_students('firstname')
+            sorted_students = SortingAlgorithms.quick_sort(student_db.get_all_students(), 'firstname', 'ascending')
+            show_students_menu(sorted_students)
         elif choice == '3':
-            student_db.show_students('lastname')
+            sorted_students = SortingAlgorithms.quick_sort(student_db.get_all_students(), 'lastname', 'ascending')
+            show_students_menu(sorted_students)
         elif choice == '4':
-            student_db.show_students('campus')
+            sorted_students = SortingAlgorithms.quick_sort(student_db.get_all_students(), 'campus', 'ascending')
+            show_students_menu(sorted_students)
         else:
             print("Invalid choice. Please try again.")
 
 def search_student_menu(student_db):
     while True:
         print("\n*******************\nSTUDENT SEARCH MENU\n*******************")
-        print("1. SEARCH STUDENT BY ID")
+        print("\n1. SEARCH STUDENT BY ID")
         print("2. SEARCH STUDENT BY FIRST NAME")
         print("3. SEARCH STUDENT BY LAST NAME")
         print("\nType EXIT to quit this menu")
@@ -169,11 +181,11 @@ def search_student_menu(student_db):
 
         search_value = input(f"Enter the {search_by} to search: ")
         student_db.search_student(search_by, search_value)
-        
+  
 
 if __name__ == "__main__":
-    student_db = student_database()
-    student_db.txt_to_csv()
+    student_db = Student_Database()
+    students = student_db.txt_to_csv()
     print("\n**** Welcome TO WHITECLIFFE College of Information Technology ***")
     print("******************** STUDENT PORTAL *************************")
     print("CSV file 'student_data.csv' successfully loaded")
