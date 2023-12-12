@@ -20,27 +20,38 @@ class Teacher:
     def __init__(self, firstname="", lastname="", qualification="", age="", campus="", email="", id=""):
         self.firstname = firstname
         self.lastname = lastname
-        self.qualification = qualification
         self.age = age
         self.campus = campus
+        self.qualification = qualification
         self.email = email
         self.id = id
 
     def teacher_add_info(self):
         print("\n*******************\nTEACHER ADD MENU\n*******************")
-        print('Enter the following information for the new teacher:')
+        print("\nEnter the following information for the new teacher: ")
         self.firstname = input('First name: ')
         self.lastname = input('Last name: ')
-        self.qualification = input('Qualification (one of PhD, Master, Bachelor: ')
         self.age = int(input('Age: '))
         self.campus = input("Campus (one of Auckland, Hamilton, Wellington, Christchurch, and Dunedin): ")
+        self.qualification = input('Qualification (PhD, Master, Bachelor, Diploma): ')
+        print(f"\nNew teacher ({self.firstname}) ({self.lastname}) ({self.age}) ({self.campus}) ({self.qualification}) has been added to the system.")
         self.email_generate()
         self.id_generate()
 
     def teacher_delete_info(self):
         print("\n*******************\nDELETE TEACHER MENU\n*******************")
-        student_id = input("\nEnter teacher ID to delete the record: ")
-        print(f"**** Teacher with ID ({student_id}) is deleted from the system.")
+        teacher_id = input("\nEnter teacher ID to delete the record: ")
+        print(f"\n**** Teacher with ID ({teacher_id}) is deleted from the system.")
+
+
+    def show_search_data(self):
+        print("First Name")
+        print("Last Name")
+        print("Qualification")
+        print("age")
+        print("campus")
+        print("email")
+        print("id")
 
     def generate_data(self):
         self.firstname_generate()
@@ -98,52 +109,19 @@ class Teacher:
         self.id = self.firstname[:3] + self.lastname[:3] + '_WHITECLIFFE'
 
     def __str__(self):
-        return f'{self.firstname} {self.lastname} {self.qualification} {self.age} {self.email} {self.campus} {self.id}'
+        return "{} {} {} {} {} {} {}".format(
+            self.firstname,
+            self.lastname,
+            self.qualification,
+            self.age,
+            self.email,
+            self.campus,
+            self.id,
+        )
 
+    # def __str__(self):
+    #     return f'{self.firstname} {self.lastname} {self.qualification} {self.age} {self.email} {self.campus} {self.id}'
 
-# class Teacher:
-#     def __init__(self, firstname="", lastname="", qualification="", campus="", email="", id=""):
-#         self.firstname =  firstname
-#         self.lastname = lastname
-#         self.qualification = qualification
-#         self.campus = campus
-#         self.email = email
-#         self.id = id
-    
-#     def teacher_add_info(self):
-#         print("\n*******************\nTEACHER ADD MENU\n*******************")
-#         print("Enter the teachers details")
-#         self.firstname = input("First Name: ")
-#         self.lastname = input("Last Name: ")
-#         self.qualification = input("Qualification (one of PhD, Master, Bachelor: ")
-#         self.campus = input("Campus (Auckland, Hamilton, Wellington, Christchurch, and Dunedin): ")
-#         # self.generate_email()
-#         # self.generate_id()
-
-#     def teacher_delete_info(teacher_db):
-#         print("\n*******************\nDELETE TEACHER MENU\n*******************")
-#         student_id = input("Enter teacher ID to delete the record: ")
-
-#         teacher_db.delete_student(student_id)
-
-#         print(f"**** Student with ID ({student_id}) is deleted from the system.")
-
-        
-#     def generate_teachers_data(self):
-#         self.firstname_generate_data()
-#         self.lastname_generate_data()
-#         # self.qualification_generate_data()
-#         # self.campus_generate_data()
-#         # self.email_generate_data()
-#         # self.id_generate_data()
-
-#     def firstname_generate_data(self):
-#         fake = Faker()
-#         self.firstmame = fake.first_name()
-        
-#     def lastname_generate_data(self):
-#         fake = Faker()
-#         self.lastname = fake.first_name()
         
 
     

@@ -72,6 +72,12 @@ def third_menu():
         elif choice == "2":
             teacher = Teacher()
             teacher.teacher_delete_info()
+        elif choice == "3":
+            teacher == Teacher()
+            teacher.show_search_data()
+        elif choice == "4":
+            teacher == Teacher()
+            teacher.show_search_data()            
 
 def add_new_student_menu(student_db):
     print("\n*******************\nSTUDENT ADD MENU\n*******************")
