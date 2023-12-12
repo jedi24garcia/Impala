@@ -45,15 +45,20 @@ class Teacher:
 
 
     def show_search_data(self):
-        print("1. First Name")
-        print("2. Last Name")
-        print("3. Age")
-        print("4. Campus")
-        print("5. Qualification")
-        print("6. Email")
-        print("7. ID")
-        choice = input("Please choose a number: ")
-        return choice
+        while True:
+            print("1. First Name")
+            print("2. Last Name")
+            print("3. Age")
+            print("4. Campus")
+            print("5. Qualification")
+            print("6. Email")
+            print("7. ID")
+            print("8. To exit this menu")
+            choice = int(input("\nPlease choose a number: "))
+            if choice == "8":
+                break
+            else:
+                return choice
 
     def generate_data(self):
         self.firstname_generate()

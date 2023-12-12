@@ -14,11 +14,11 @@ def main():
         print("\n1. Student")
         print("2. Teacher")
         print("3. Course")
-        print("\nType EXIT to quit this menu")
+        print("\nType EXIT to quit this application")
 
-        choice = input("Please select your choice: ").lower()
+        choice = input("\nPlease select your choice: ").lower()
 
-        if choice == "Exit":
+        if choice == "exit":
             break
         elif choice == "1":
             second_menu()
@@ -37,9 +37,9 @@ def second_menu():
         print("4. SEARCH STUDENT")
         print("\nType EXIT to quit this menu")
 
-        choice = input("Please choose a number: ").lower()
+        choice = input("\nPlease choose a number: ").lower()
 
-        if choice == "Exit":
+        if choice == "exit":
             break
         elif choice == "1":
             add_new_student_menu(student_db)
@@ -62,9 +62,9 @@ def third_menu():
         print("4. SEARCH FOR TEACHER")
         print("\nType EXIT to quit this menu")
         
-        choice = input("Please choose a number: ").lower()
+        choice = input("\nPlease choose a number: ").lower()
 
-        if choice == "Exit":
+        if choice == "exit":
             break
         elif choice == "1":
             teacher = Teacher()
@@ -88,9 +88,9 @@ def fourth_menu():
         print("3. Mobile Development")
         print("\nType EXIT to quit this menu")
         
-        choice = input("Please choose a number: ")
+        choice = input("\nPlease choose a number: ")
 
-        if choice == "Exit":
+        if choice == "exit":
             break
         elif choice == "1":
             course = Courses()
@@ -122,46 +122,54 @@ def delete_student_menu(student_db):
     print(f"**** Student with ID ({student_id}) is deleted from the system.")
 
 def show_students_menu(student_db):
-    print("\n*******************\nSTUDENTS SHOW MENU\n*******************")
-    print("1. SHOW ALL STUDENTS BY ID")
-    print("2. SHOW ALL STUDENTS BY FIRST NAME (ASCENDING ORDER)")
-    print("3. SHOW ALL STUDENTS BY LAST NAME (ASCENDING ORDER)")
-    print("4. SHOW ALL STUDENTS BY CAMPUS (ASCENDING ORDER)")
+    while True:
+        print("\n*******************\nSTUDENTS SHOW MENU\n*******************")
+        print("1. SHOW ALL STUDENTS BY ID")
+        print("2. SHOW ALL STUDENTS BY FIRST NAME (ASCENDING ORDER)")
+        print("3. SHOW ALL STUDENTS BY LAST NAME (ASCENDING ORDER)")
+        print("4. SHOW ALL STUDENTS BY CAMPUS (ASCENDING ORDER)")
+        print("\nType EXIT to quit this menu")
+        
+        choice = input("\nPlease select your choice: ")
 
-    choice = input("Enter your choice: ")
-
-    if choice == '1':
-        student_db.show_students('id')
-    elif choice == '2':
-        student_db.show_students('firstname')
-    elif choice == '3':
-        student_db.show_students('lastname')
-    elif choice == '4':
-        student_db.show_students('campus')
-    else:
-        print("Invalid choice. Please try again.")
+        if choice == "exit":
+            break
+        elif choice == '1':
+            student_db.show_students('id')
+        elif choice == '2':
+            student_db.show_students('firstname')
+        elif choice == '3':
+            student_db.show_students('lastname')
+        elif choice == '4':
+            student_db.show_students('campus')
+        else:
+            print("Invalid choice. Please try again.")
 
 def search_student_menu(student_db):
-    print("\n*******************\nSTUDENT SEARCH MENU\n*******************")
-    print("1. SEARCH STUDENT BY ID")
-    print("2. SEARCH STUDENT BY FIRST NAME")
-    print("3. SEARCH STUDENT BY LAST NAME")
+    while True:
+        print("\n*******************\nSTUDENT SEARCH MENU\n*******************")
+        print("1. SEARCH STUDENT BY ID")
+        print("2. SEARCH STUDENT BY FIRST NAME")
+        print("3. SEARCH STUDENT BY LAST NAME")
+        print("\nType EXIT to quit this menu")
 
-    choice = input("Enter your choice: ")
+        choice = input("\nPlease select you choice: ")
 
-    if choice == '1':
-        search_by = 'id'
-    elif choice == '2':
-        search_by = 'firstname'
-    elif choice == '3':
-        search_by = 'lastname'
-    else:
-        print("Invalid choice. Please try again.")
-        return
+        if choice == "exit":
+            break
+        elif choice == '1':
+            search_by = 'id'
+        elif choice == '2':
+            search_by = 'firstname'
+        elif choice == '3':
+            search_by = 'lastname'
+        else:
+            print("Invalid choice. Please try again.")
+            return
 
-    search_value = input(f"Enter the {search_by} to search: ")
-    student_db.search_student(search_by, search_value)
-    
+        search_value = input(f"Enter the {search_by} to search: ")
+        student_db.search_student(search_by, search_value)
+        
 
 if __name__ == "__main__":
     student_db = student_database()
