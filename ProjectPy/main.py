@@ -5,7 +5,6 @@ from utilities import Student_Database, teacher_database, AlgoMenus
 from formulas import SortingAlgorithms, SearchingAlgorithms
 
 
-
 def main():
     student_database = Student_Database()
     students = student_db.txt_to_csv()
@@ -192,4 +191,15 @@ if __name__ == "__main__":
     print("\n**** Welcome TO WHITECLIFFE College of Information Technology ***")
     print("******************** STUDENT PORTAL *************************")
     print("CSV file 'student_data.csv' successfully loaded")
+    
+    sorted_students, sorting_time = student_db.generate_measurement(
+        SortingAlgorithms.quick_sort, student_db.students, bubble_list="id", sorting_order="ascending"
+    )
+    print(f"Sorting Time: {sorting_time} seconds")
+
+    searched_students, searching_time = student_db.generate_measurement(
+        SearchingAlgorithms.linear_search, student_db.students, bubble_list="id", value="some_value"
+    )
+    print(f"Searching Time: {searching_time} seconds")
+
     main()

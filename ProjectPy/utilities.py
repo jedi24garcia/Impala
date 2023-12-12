@@ -2,6 +2,7 @@ import os
 import csv
 import pandas
 from classes import Teacher, Student
+import time
 
 # Students Database
 
@@ -11,6 +12,13 @@ class Student_Database:
 
     def generate_id(self, firstname, lastname):
         return f"{firstname[:3]}{lastname[:3]}{str(2023)[-2:]}"
+
+    def generate_measurement(self, function, *args, **kwargs):
+        start = time.time()
+        result = function(*args, **kwargs)
+        end = time.time()
+        execute = end - start
+        return result, execute
 
     def add_new_student(self, student):
         self.students.append(student)
