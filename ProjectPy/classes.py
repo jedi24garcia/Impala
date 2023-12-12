@@ -70,42 +70,33 @@ class Teacher:
         self.id_generate()
 
     def firstname_generate(self):
-        # Initialize Faker to generate real names
         fake = Faker()
         self.firstname = fake.first_name()
 
     def lastname_generate(self):
-        # Initialize Faker to generate real names
         fake = Faker()
         self.lastname = fake.last_name()
 
     def qualification_generate(self):
-        # Define the ranges and their corresponding probabilities
-        qualifications = ['PhD', 'Master', 'Bachelor']
-        qual_probabilities = [0.2, 0.6, 0.2]
+        qualifications = ['PhD', 'Master', 'Bachelor', 'Diploma']
+        qual_probabilities = [0.3, 0.7, 0.3, 0.4]
 
-        # Calculate the weights based on the probabilities
         qual_weights = [prob / sum(qual_probabilities) for prob in qual_probabilities]
         self.campus = random.choices(qualifications, weights=qual_weights)[0]
 
     def age_generate(self):
-        # Define the ranges and their corresponding probabilities
-        age_ranges = [(20, 40), (40, 60), (60, 71)]
+        age_ranges = [(20, 30), (30, 50), (50, 65)]
         age_probabilities = [0.3, 0.6, 0.1]
 
-        # Calculate the weights based on the probabilities
         age_weights = [prob / sum(age_probabilities) for prob in age_probabilities]
 
-        # Generate a random number based on the specified probability distribution
         random_range = random.choices(age_ranges, weights=age_weights)[0]
         self.age = random.randint(*random_range)
 
     def campus_generate(self):
-        # Define the ranges and their corresponding probabilities
         campuses = ['Auckland', 'Hamilton', 'Wellington', 'Christchurch', 'Dunedin']
         campus_probabilities = [0.3, 0.2, 0.2, 0.2, 0.1]
 
-        # Calculate the weights based on the probabilities
         campus_weights = [prob / sum(campus_probabilities) for prob in campus_probabilities]
         self.campus = random.choices(campuses, weights=campus_weights)[0]
 

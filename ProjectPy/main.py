@@ -11,7 +11,7 @@ def main():
     students = student_db.txt_to_csv()
 
     teacher_file_name = "teachers.csv"
-    teacher_file_size = 100
+    teacher_file_size = 500
     teacher_utilities = teacher_database()
     teachers = teacher_utilities.teacher_data_file(teacher_file_name, teacher_file_size)
 
