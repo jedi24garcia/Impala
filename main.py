@@ -45,4 +45,3 @@ if __name__ == '__main__':
         #speak(text_to_speak, voicename)
 
 speak(text_to_speak, selected_persona)
-#speak(selected_persona, text_to_speak)
