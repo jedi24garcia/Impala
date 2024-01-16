@@ -36,12 +36,9 @@ if __name__ == '__main__':
   else:
     for voicename in voicenames:
       print(voicename) 
-
-      selected_persona = voicenames[0]
+      selected_persona = voicenames[2]
       #selected_persona = "Albert"
-      text_to_speak = "Hello"
-      
-      #for voicename in voicenames:
-        #speak(text_to_speak, voicename)
+      text_to_speak = "Hello"            
+      speak(text_to_speak, selected_persona)
 
-speak(text_to_speak, selected_persona)
+#speak(text_to_speak, selected_persona)
