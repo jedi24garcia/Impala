@@ -27,7 +27,7 @@ def speak(text, voicename):
     else:
       print(f"Voice '{voicename}' is not available.")
   except Exception as e:
-    print(f"Error speaking: {e}")  
+    print(f"Error speaking with voice '{voicename}': {e}")  
 
 if __name__ == '__main__':
   voicenames = getVoice()
@@ -36,7 +36,7 @@ if __name__ == '__main__':
   else:
     for voicename in voicenames:
       print(voicename) 
-      selected_persona = voicenames[2]
+      selected_persona = voicenames[0]
       #selected_persona = "Albert"
       text_to_speak = "Hello"            
       speak(text_to_speak, selected_persona)
