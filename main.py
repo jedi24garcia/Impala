@@ -42,3 +42,4 @@ if __name__ == '__main__':
       speak(text_to_speak, selected_persona)
 
 #speak(text_to_speak, selected_persona)
+#Not working as it should
